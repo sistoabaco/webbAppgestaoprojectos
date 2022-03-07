@@ -33,7 +33,7 @@ public class SolicitacaoTransporte implements Serializable {
     private String vistoCoordenador;
     private String vistoLogistico;
     private String dataAprovacaoCoordenador;
-    private String vdtaAprovacaoLogistico;
+    private String dataAprovacaoLogistico;
 
     private String status; //rejeitado/aprovado/cancelado/pendente
     private String motivo_rejeicao_cancelamento;
