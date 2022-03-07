@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/cadastrar.css" rel="stylesheet"/>
+
+    <title>formulario_funcionario</title>
+  </head>
+  <body>
+
+    <div class="container head">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+          <a href="/paginaSegura" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img id="logo" width="60px" src="icons/caritasmz.png"/>
+            <h2 class="logo"></h2>
+          </a>
+    
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+              <li><a href="/paginaSegura" class="nav-link px-2 link-dark">home</a></li>
+              <li><a href="/listaProjecto" class="nav-link px-2 link-dark">Lista de projectos</a></li>
+          </ul>
+
+        </header>
+    </div>
+
+    <div class="container main-cadastro">
+        <center><h1>Cadastro de Projecto</h1></center>
+
+        <form action="/salvarProjecto" method="post" class="needs-validation" novalidate>
+            <div class="form-row">
+
+<!--              <div th:text="${erro}"></div>-->
+
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Nome do Projecto</label>
+                <input type="text" class="form-control" name="nomeProjecto" id="validationCustom01" placeholder="BHA" value="" required>
+                <div class="valid-feedback">
+                  Tudo certo!
+                </div>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom03">Local de Implementacao</label>
+                <input type="text" name="localImplementacao" class="form-control" id="validationCustom03" placeholder="Pemba, Metuge e Chiure"  required>
+                <div class="valid-feedback">
+                  Tudo certo!
+                </div>
+              </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="validationCustom04">Orcamento</label>
+                  <input type="number" name="orcamento" class="form-control" id="validationCustom04" placeholder="12 000 000" required>
+                  <div class="valid-feedback">
+                    Tudo certo!
+                  </div>
+                </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom012">Saldo Disponivel</label>
+                <input type="number" name="saldoDisponivel" class="form-control" id="validationCustom012" placeholder="6 000 000" required>
+                <div class="valid-feedback">
+                  Tudo certo!
+                </div>
+              </div>
+            </div>
+
+          <div  class="mb-3 col-md-4" style="border: 1px solid lightgray; border-radius: 3px; padding: 5px; max-width: 348px;">
+            <label style="border-bottom: 1px solid lightgray; width: 100%;">Tipo de Moeda</label><br/>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio15">MZN</label>
+              <input class="form-check-input" type="radio" value="MZN" name="tipoMoeda" id="inlineRadio15">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio16">USD</label>
+              <input class="form-check-input" type="radio" value="USD" name="tipoMoeda" id="inlineRadio16">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio17">LIBRA</label>
+              <input class="form-check-input" type="radio" value="LIBRA" name="tipoMoeda" id="inlineRadio17">
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label" for="inlineRadio18">EURO</label>
+              <input class="form-check-input" type="radio" value="EURO" name="tipoMoeda" id="inlineRadio18">
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Data de Inicio</label>
+                <input type="date" name="dataInicio" class="form-control" id="validationCustom08" placeholder="01/01/2020" value="" required>
+                <div class="valid-feedback">
+                  Tudo certo!
+                </div>
+              </div>
+  
+              <div class="col-md-4 mb-3">
+                <label for="validationCustom01">Data de Fim</label>
+                <input type="date" name="dataFim" class="form-control" id="validationCustom09" placeholder="01/05/2021" value="" required>
+                <div class="valid-feedback">
+                  Tudo certo!
+                </div>
+              </div>
+
+            <div  class="mb-3 col-md-4" style="border: 1px solid lightgray; border-radius: 3px; padding: 5px; max-width: 348px;">
+            <label style="border-bottom: 1px solid lightgray; width: 100%;">Estado de Execucao</label><br/>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineRadio2">Activo</label>
+                <input class="form-check-input" type="radio" value="Activo" name="estado" id="inlineRadio2">
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineRadio0">Terminado</label>
+                <input class="form-check-input" type="radio" value="Terminado" name="estado" id="inlineRadio0">
+            </div>
+
+            <button class="btn btn-primary btn-cadastrar" type="submit">Cadastrar</button>
+            </div>
+          </form>
+
+    </div>
+
+    <div class="container footer">
+      <footer class="py-5">
+        <div class="row">
+          <div class="col-7">
+            <h5>Section</h5>
+            <ul class="nav">
+              <li class="nav-item mb-2"><a href="/paginaSegura" class="nav-link p-0 text-muted">Home</a></li>
+              <li class="nav-item mb-2"><a href="/projectos" class="nav-link p-0 text-muted">Projectos</a></li>
+              <li class="nav-item mb-2"><a href="/parceiros" class="nav-link p-0 text-muted">Parceiros</a></li>
+              <li class="nav-item mb-2"><a href="/apoiadores" class="nav-link p-0 text-muted">Apoiadores</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Sobre</a></li>
+            </ul>
+          </div>
+
+          <div class="col-4 offset-1">
+            <form>
+              <h5>Subscreva a nossa newslatter</h5>
+              <p>Mensalmente receba noticias e actualizacoes dos nosso projectos</p>
+              <div class="d-flex w-100 gap-2">
+                <label for="newsletter1" class="visually-hidden">Email address</label>
+                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                <button class="subscrever btn btn-primary" type="button">Subscrever</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between py-4 my-4 border-top">
+          <p>&copy; 2021 Caritas, Inc. All rights reserved.</p>
+          <ul class="list-unstyled d-flex">
+            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg>T</a></li>
+            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg>I</a></li>
+            <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg>F</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script>
+      // Exemplo de JavaScript inicial para desativar envios de formulÃ¡rio, se houver campos invÃ¡lidos.
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Pega todos os formulÃ¡rios que nÃ³s queremos aplicar estilos de validaÃ§Ã£o Bootstrap personalizados.
+          var forms = document.getElementsByClassName('needs-validation');
+          // Faz um loop neles e evita o envio
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>
+  </body>
+</html>
