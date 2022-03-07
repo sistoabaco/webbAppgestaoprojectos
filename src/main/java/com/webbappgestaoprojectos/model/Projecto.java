@@ -41,15 +41,15 @@ public class Projecto implements Serializable {
 
     @ManyToMany(mappedBy = "projecto")
     private Collection <Parceiro> parceiro;
-//
-//    @OneToMany
-//    private Collection<TermoReferencia> termoReferencia;
-//
-//    @OneToMany
-//    private Collection<SolicitacaoTransporte> solicitacaoTransportes;
 
-//    @ManyToMany(mappedBy = "projecto", fetch = FetchType.LAZY)
-//    private Collection<Funcionario> funcionario;
+    @ManyToMany(mappedBy = "projecto")
+    private Collection <TermoReferencia> termoReferencia;
+
+    @OneToMany
+    private Collection <SolicitacaoTransporte> solicitacaoTransportes;
+
+    @ManyToMany(mappedBy = "projecto")
+    private Collection <Funcionario> funcionario;
 
     @Override
     public String toString(){

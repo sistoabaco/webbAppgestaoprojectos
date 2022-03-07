@@ -1,8 +1,5 @@
 package com.webbappgestaoprojectos.model;
 
-import com.webbappgestaoprojectos.model.Categoria;
-import com.webbappgestaoprojectos.model.Projecto;
-import com.webbappgestaoprojectos.model.Utilizador;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
@@ -34,10 +31,12 @@ public class Funcionario {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Categoria categoriaia;
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private SolicitacaoTransporte solicitacaoTransporte;
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private TermoReferencia termoReferencia;
+
+    @OneToMany
+    private Collection <SolicitacaoTransporte> solicitacaoTransporte;
+
+    @OneToMany
+    private Collection <TermoReferencia> termoReferencia;
 
     @OneToOne
     private Utilizador utilizador;

@@ -21,7 +21,7 @@ public class Permissao implements Serializable {
     private String descricao;
 
     @ManyToMany(mappedBy = "permissao")
-    private Collection<Utilizador> utilizador;
+    private Collection <Utilizador> utilizador;
 
     public Permissao(String descricao){
         this.descricao = descricao;
