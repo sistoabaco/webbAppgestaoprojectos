@@ -26,14 +26,16 @@ public class SolicitacaoTransporte implements Serializable {
     private String destino;
     private String dataInicio;
     private String dataFim;
-    private boolean necessidadeAlojamento;
+    private String necessidadeAlojamento;
     private int qtdDias;
     private int qtdPessoas;
-    private boolean motivoDaSolicitacao;
+    private String motivoDaSolicitacao;
+
     private String vistoCoordenador;
-    private String vistoLogistico;
     private String dataAprovacaoCoordenador;
-    private String dataAprovacaoLogistico;
+
+    private String vistoLogistico;
+        private String dataAprovacaoLogistico;
 
     private String status; //rejeitado/aprovado/cancelado/pendente
     private String motivo_rejeicao_cancelamento;

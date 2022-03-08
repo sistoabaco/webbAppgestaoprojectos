@@ -30,8 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-                . antMatchers("/h2").permitAll()
-                .antMatchers("/","/projectos", "/actividades", "/apoiadores", "/parceiros","/sobre").permitAll()
+                .antMatchers("/h2", "/","/projectos", "/actividades", "/apoiadores", "/parceiros","/sobre").permitAll()
+                .antMatchers( "/gestorFinanceiro", "/salvarFuncionario","/salvarParceiro", "/salvarProjecto").access("hasAnyAuthority('P_GESTOR FINANCEIRO','ADMIN')")
                 //Para qualquer requisiÃ§Ã£o (anyRequest) Ã© preciso estar (anyRequest)
                 .anyRequest()
                 // autenticado (authenticated)

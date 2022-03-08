@@ -44,9 +44,8 @@ public class FuncionarioController {
     }
 
     @PostMapping("/salvarFuncionario")
-    public String adicionarFuncionario(@Valid Funcionario f, @Valid Utilizador u, Projecto proj, Categoria cat,
-                                       BindingResult result,
-                                       @RequestParam(value = "permi", required = true) Collection<Permissao> role, Model model){
+    public String adicionarFuncionario(@Valid Funcionario f, @Valid Utilizador u, @RequestParam(value = "projeto", required = true)  Collection<Projecto> proj,
+    Categoria cat, BindingResult result, @RequestParam(value = "permi", required = true) Collection<Permissao> role, Model model){
 
 //        System.out.println("Chega aqui!!!");
 //        model.addAttribute("erro", "erro ao salvar funcionario");
@@ -61,7 +60,7 @@ public class FuncionarioController {
         ur.save(u);
 
         f.setCategoriaia(cat);
-        f.setProjecto(Arrays.asList(proj));
+        f.setProjecto(proj);
         f.setUtilizador(u);
 
         fr.save(f);

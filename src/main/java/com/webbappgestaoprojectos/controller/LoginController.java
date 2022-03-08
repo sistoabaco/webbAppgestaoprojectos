@@ -15,4 +15,9 @@ public class LoginController {
     public String paginaSegura(){
         return"pagina_segura";
     }
+
+    @RequestMapping ("/gestorFinanceiro")
+    public String paginaGestorFinanceira(){
+        return"gestor_financeiro";
+    }
 }

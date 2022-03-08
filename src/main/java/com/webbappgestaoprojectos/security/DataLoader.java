@@ -33,7 +33,7 @@ public class DataLoader implements CommandLineRunner{
 //        pr.save(new Permissao("P_OFICIAL DE MEAL"));
 //        pr.save(new Permissao("P_GESTOR DE PROJECTOS"));
 //        pr.save(new Permissao("P_DIRECTOR"));
-//        pr.save(new Permissao("P_GESTOR FINANCEIRO"));
+        pr.save(new Permissao("P_GESTOR FINANCEIRO"));
 //        pr.save(new Permissao("P_CONTABILISTA"));
 //        pr.save(new Permissao("P_OFICIAL DE LOGISTICA"));
 //        pr.save(new Permissao("P_ASSISTENTE DE LOGISTICA"));
@@ -44,10 +44,11 @@ public class DataLoader implements CommandLineRunner{
         Permissao adminPermissao = pr.findByRole("ADMIN");
         Permissao userPermissao = pr.findByRole("USER");
         Permissao parPermissao = pr.findByRole("P_PARCEIRO");
+        Permissao financeiroP = pr.findByRole("P_GESTOR FINANCEIRO");
 
         Utilizador utilizador =
                 new Utilizador("sabaco@unilurio.ac.mz", passwordEncoder.encode("12345"));
-        utilizador.setPermissao(Arrays.asList(adminPermissao));
+        utilizador.setPermissao(Arrays.asList(adminPermissao, userPermissao, financeiroP,parPermissao ));
         utilizadorRepository.save(utilizador);
 
 //        Utilizador u = new Utilizador("pmarques@unilurio.ac.mz", passwordEncoder.encode("54321"));
@@ -72,8 +73,8 @@ public class DataLoader implements CommandLineRunner{
 
          cr.save (new Categoria("TEAM LEADER", 30000.0));
          cr.save(new Categoria("COORDENADOR", 80000.0));
+         cr.save(new Categoria("OFICIAL DE MEAL", 30000.0));
 
-//        Categoria c3 = new Categoria("OFICIAL DE MEAL", 30000.0);
 //        cr.save(c3);
 //        Categoria c4 = new Categoria("GESTOR DE PROJECTOS", 150000.0);
 //        cr.save(c4);

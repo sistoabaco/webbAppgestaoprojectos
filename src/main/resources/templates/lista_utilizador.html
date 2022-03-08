@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org">
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,8 +28,9 @@
     </div>
 
     <div class="container>">
-        <h1>lista de utilizadores do sistema</h1>
-        <a href="/salvarFuncionario">adicionar novo funcionario</a> ou <a href="/salvarParceiro">adicionar novo parceiro</a>
+        <h3>lista de utilizadores do sistema</h3>
+        <a href="/salvarFuncionario" sec:authorize="hasAnyAuthority('P_GESTOR FINANCEIRO')">adicionar novo funcionario</a><br>
+        <a href="/salvarParceiro" sec:authorize="hasAnyAuthority('P_GESTOR FINANCEIRO')">adicionar novo parceiro</a>
     </div>
 
     <table class="table table-bordered">

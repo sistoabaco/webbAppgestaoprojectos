@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org">
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>lista_de_projectos</title>
@@ -26,7 +27,7 @@
     </div>
     <div class="container>">
         <h1>lista de Projectos</h1>
-        <a href="/salvarProjecto">adicionar novo projecto</a>
+        <a href="/salvarProjecto" sec:authorize="hasAnyAuthority('P_GESTOR FINANCEIRO')">adicionar novo projecto</a>
     </div>
 
     <table class="table table-bordered">

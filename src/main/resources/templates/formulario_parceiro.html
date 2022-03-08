@@ -93,16 +93,29 @@
               </div>
             </div>
 
+<!--            <div class="form-group mb-3 col-md-4">-->
+<!--                <label>Projectos que Financia/Vinculado </label>-->
+<!--                <select name="projecto" class="custom-select form-control" style="max-width: 348px;" required>-->
+<!--                    <option value="">Selecione os projectos...</option>-->
+<!--                    <option th:each="p : ${projecto}"-->
+<!--                            th:value="${p.idProjecto}"-->
+<!--                            th:text="${p.nomeProjecto}"-->
+<!--                            th:field="*{projecto}"></option>-->
+<!--                </select>-->
+<!--                <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>-->
+<!--            </div>-->
+
             <div class="form-group mb-3 col-md-4">
-                <label>Projectos que Financia/Vinculado </label>
-                <select name="projecto" class="custom-select form-control" style="max-width: 348px;" required>
-                    <option value="">Selecione os projectos...</option>
-                    <option th:each="p : ${projecto}"
-                            th:value="${p.idProjecto}"
-                            th:text="${p.nomeProjecto}"
-                            th:field="*{projecto}"></option>
-                </select>
-                <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
+                <label class="col-sd-4">Projectos que Financia/Vinculado</label><br>
+                <div class="col-sm-8 text-left">
+                    <th:block th:each="proj : ${projecto}">
+                        <input type="checkbox"  name="projeto" id ="projeto"
+                               th:text="${proj.nomeProjecto}"  th:value="${proj.idProjecto}"
+                        />
+                        <br>
+                    </th:block>
+                </div>
+                <div class="valid-feedback"> Tudo certo! </div>
             </div>
 
             <div class="form-group mb-3 col-md-4">
@@ -111,18 +124,16 @@
                     <th:block th:each="priv : ${permissao}">
                         <input type="checkbox"  name="permi" id ="permi"
                                th:text="${priv.getDescricao()}" th:value="${priv.idPermissao}"
-                        />
+                               />
                         <br>
                     </th:block>
                 </div>
                 <div class="valid-feedback"> Tudo certo! </div>
             </div>
 
-            <div class="col-md-4 mb-3">
             <button class="btn btn-primary btn-cadastrar" type="submit">Cadastrar</button>
-            </div>
-          </form>
 
+          </form>
     </div>
 
     <div class="container footer">

@@ -39,8 +39,8 @@ public class ParceiroController {
     }
 
     @PostMapping(value = "/salvarParceiro")
-    public String salvarParceiros(@Valid Parceiro parceiro, @Valid Utilizador u, Projecto proj,
-                                  BindingResult result, @RequestParam(value = "permi", required = true)  Collection<Permissao> role, Model model){
+    public String salvarParceiros(@Valid Parceiro parceiro, @Valid Utilizador u, @RequestParam(value = "projeto", required = true)  Collection <Projecto> proj,
+        BindingResult result, @RequestParam(value = "permi", required = true)  Collection <Permissao> role, Model model){
 
 //        System.out.println("role " + role);
 
@@ -56,7 +56,7 @@ public class ParceiroController {
         }
 
         parceiro.setUtilizador(u);
-        parceiro.setProjecto(Arrays.asList(proj));
+        parceiro.setProjecto(proj);
 
         parceiroRepository.save(parceiro);
 
