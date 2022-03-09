@@ -140,7 +140,7 @@
                     </div>
                 </div>
 
-                <h1>Dados do Projecto: </h1>
+                <h3>Dados do Projecto: </h3>
 
 <!--            <div class="form-group mb-3 col-md-4">-->
 <!--                <label>Projecto que Pertence</label>-->
@@ -156,8 +156,8 @@
                 <div class="col-sm-8 text-left">
                     <th:block th:each="proj : ${projecto}">
                         <input type="checkbox"  name="projeto" id ="projeto"
-                               th:text="${proj.nomeProjecto}"  th:value="${proj.idProjecto}"
-                               />
+                               th:text="${proj.nomeProjecto}"
+                               th:value="${proj.idProjecto}" />
                         <br>
                     </th:block>
                 </div>

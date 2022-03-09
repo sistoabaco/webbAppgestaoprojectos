@@ -2,6 +2,7 @@ package com.webbappgestaoprojectos.controller;
 
 import com.webbappgestaoprojectos.model.Funcionario;
 import com.webbappgestaoprojectos.model.Projecto;
+import com.webbappgestaoprojectos.model.Utilizador;
 import com.webbappgestaoprojectos.repository.FuncionarioRepository;
 import com.webbappgestaoprojectos.repository.ProjectoRepository;
 import com.webbappgestaoprojectos.repository.SolicitacaoTRepository;
@@ -28,7 +29,7 @@ public class SolicitacaoTController {
     @GetMapping("/listaSTransporte")
     public String listarST(Model model){
         model.addAttribute("ST", st.findAll());
-        return"listaST";
+        return"lista_s_transporte";
     }
 
     @GetMapping("/salvarST")
@@ -38,9 +39,10 @@ public class SolicitacaoTController {
         return"formulario_s_transporte";
     }
 
-    @PostMapping("salvarST")
-    public String salvarST(@RequestParam(value = "projeto", required = true) Collection<Projecto> proj,
+    @PostMapping("/salvarST")
+    public String salvarST(@RequestParam(value = "projeto", required = true) Collection <Projecto> proj,
                            Funcionario f, Projecto p, Model model, BindingResult result){
+
         return"redirect:/listaSTransporte";
     }
 }

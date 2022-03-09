@@ -30,7 +30,7 @@ public class Funcionario {
     private String dataFim;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Categoria categoriaia;
+    private Categoria categoria;
 
     @OneToMany
     private Collection <SolicitacaoTransporte> solicitacaoTransporte;

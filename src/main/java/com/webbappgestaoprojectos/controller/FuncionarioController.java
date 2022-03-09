@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.Collection;
 
 @Controller
@@ -44,10 +42,10 @@ public class FuncionarioController {
     }
 
     @PostMapping("/salvarFuncionario")
-    public String adicionarFuncionario(@Valid Funcionario f, @Valid Utilizador u, @RequestParam(value = "projeto", required = true)  Collection<Projecto> proj,
+    public String adicionarFuncionario(@Valid Funcionario f, @Valid Utilizador u, @RequestParam(value = "projeto", required = true)  Collection <Projecto> proj,
     Categoria cat, BindingResult result, @RequestParam(value = "permi", required = true) Collection<Permissao> role, Model model){
 
-//        System.out.println("Chega aqui!!!");
+        System.out.println("Chega aqui!!!");
 //        model.addAttribute("erro", "erro ao salvar funcionario");
 
 
@@ -59,7 +57,7 @@ public class FuncionarioController {
         u.setPermissao(role);
         ur.save(u);
 
-        f.setCategoriaia(cat);
+        f.setCategoria(cat);
         f.setProjecto(proj);
         f.setUtilizador(u);
 
