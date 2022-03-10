@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org">
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Solicitacao_Transporte</title>
@@ -28,6 +29,10 @@
 
     <div class="container main-cadastro">
 
+<!--        <div th:if="${solicitacaoTransporte.idSolicitacaoTransporte == null}"> </div>-->
+            <center><h1>Criar Solicitacao de Transporte</h1></center>
+<!--        <div th:unless="${solicitacaoTransporte.idSolicitacaoTransporte == null}"> <center><h1>Editar Solicitacao de Transporte</h1></center></div>-->
+
     <h2>Solicitacao de Transporte</h2>
 
     <form method="Post" th:action="@{/salvarST}" class="row gy-2 gx-3 align-items-center">
@@ -36,7 +41,7 @@
             <label class="col-sd-4">Projecto</label><br>
             <div class="col-sm-8 text-left">
                 <th:block th:each="proj : ${projecto}">
-                    <input type="checkbox"  name="projeto" id ="projeto"
+                    <input type="checkbox"  name="pro" id ="pro"
                            th:text="${proj.nomeProjecto}"  th:value="${proj.idProjecto}"
                     />
                     <br>
@@ -47,8 +52,8 @@
 
         <div class="col-auto">
             <label class="visually-hidden" for="autoSizingSelect">Tipo de Viatura</label>
-            <select class="form-select" id="autoSizingSelect">
-                <option selected name="tipoDeViatura">Selecione o tipo de viatura</option>
+            <select name="tipoDeViatura" class="form-select" id="autoSizingSelect">
+                <option value="">Selecione o tipo de viatura</option>
                 <option value="Pickup 5 lugares 4x4 com traccao">Pickup 5 lugares 4x4 com traccao</option>
                 <option value="Minibus 15 lugares">Minibus 15 lugares</option>
                 <option value="Minibus >15 lugares">Minibus >15 lugares</option>
@@ -71,10 +76,10 @@
 
         <div class="form-group mb-3 col-md-4">
             <label>Solicitante Responsavel</label>
-             <select name="solitanteResponsavel" id="solitanteResponsavel" class="custom-select form-control" style="max-width: 348px;" required>
+             <select name="funcionario" id="funcionario" class="custom-select form-control" style="max-width: 348px;" required>
                  <option value="">Selecione o solicitante...</option>
-                 <option th:each="f : ${funcionario}"  th:value="${f.idFuncionario}"
-                         th:text="${f.sobrenome}"></option>
+                 <option th:value="${funcionario.idFuncionario}"
+                         th:text="${funcionario.toString()}"></option>
                 </select>
              <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
         </div>
@@ -89,8 +94,8 @@
 
         <div class="col-auto">
             <label class="visually-hidden" for="autoSizingSelect">Local de Origem da actividade</label>
-            <select class="form-select" id="autoSizingSelectn" required>
-                <option selected name="origem">Origem</option>
+            <select name="origem" class="form-select" id="autoSizingSelectn" required>
+                <option value="" >Origem</option>
                 <option value="Pemba">Pemba</option>
                 <option value="Chiure">Chiure</option>
                 <option value="Mecufi">Mecufi</option>
@@ -105,8 +110,8 @@
 
         <div class="col-auto">
             <label class="visually-hidden" for="autoSizingSelect">Local de Destino da actividade</label>
-            <select class="form-select" id="autoSizingSelectm" required>
-                <option selected name="destino">Destino</option>
+            <select name="destino" class="form-select" id="autoSizingSelectm" required>
+                <option value="" >Destino</option>
                 <option value="Pemba">Pemba</option>
                 <option value="Chiure">Chiure</option>
                 <option value="Mecufi">Mecufi</option>
@@ -149,7 +154,7 @@
         </div>
 
         <div class="col-md-4 mb-3">
-            <label for="validationCustom07">Quantidade de dias de estadia</label>
+            <label for="validationCustom07">Quantidade de dias das Actividade</label>
             <input type="number" name="qtdDias" class="form-control" id="validationCustom07" placeholder="5" required>
             <div class="valid-feedback">
                 Tudo certo!
@@ -157,7 +162,7 @@
         </div>
 
         <div class="col-md-4 mb-3">
-            <label for="validationCustom06">Quantidade de Pessoas</label>
+            <label for="validationCustom06">Quantidade de Pessoas Envolvidas</label>
             <input type="number" name="qtdPessoas" class="form-control" id="validationCustom06" placeholder="3" required>
             <div class="valid-feedback">
                 Tudo certo!

@@ -5,13 +5,16 @@ import com.webbappgestaoprojectos.repository.ParceiroRepository;
 import com.webbappgestaoprojectos.repository.PermissaoRepository;
 import com.webbappgestaoprojectos.repository.ProjectoRepository;
 import com.webbappgestaoprojectos.repository.UtilizadorRepository;
+import org.apache.tomcat.util.buf.UEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.beans.Encoder;
 import java.util.*;
 
 @Controller
@@ -24,6 +27,8 @@ public class ParceiroController {
     PermissaoRepository permissaoRepository;
     @Autowired
     UtilizadorRepository utilizadorRepository;
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     @RequestMapping("/listaParceiro")
     public String listaDeParceiros(Model model){
@@ -39,16 +44,17 @@ public class ParceiroController {
     }
 
     @PostMapping(value = "/salvarParceiro")
-    public String salvarParceiros(@Valid Parceiro parceiro, @Valid Utilizador u, @RequestParam(value = "projeto", required = true)  Collection <Projecto> proj,
+    public String salvarParceiros(@Valid Parceiro parceiro, @Valid Utilizador u, @RequestParam(value = "pro", required = true)  Collection <Projecto> proj,
         BindingResult result, @RequestParam(value = "permi", required = true)  Collection <Permissao> role, Model model){
 
-//        System.out.println("role " + role);
+//        System.out.println("rolePro " + proj);
 
         u.setPermissao(role);
+        u.setPassword(passwordEncoder.encode(u.getPassword()));
         utilizadorRepository.save(u);
 
         if((!u.getUsername().equals(parceiro.getEmail())) & result.hasErrors()){
-            model.addAttribute("erro", "problemas ou username e e-mail diferentes!!!");
+            model.addAttribute("erro", "problemas, ou username e e-mail diferentes!!!");
             model.addAttribute("projecto", projectoRepository.findAll());
             model.addAttribute("permissao", permissaoRepository.findAll());
             model.addAttribute("parceiro", new Parceiro());

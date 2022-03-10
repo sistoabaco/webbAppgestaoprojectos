@@ -43,10 +43,11 @@ public class DataLoader implements CommandLineRunner{
         Permissao adminPermissao = pr.findByRole("ADMIN");
         Permissao parPermissao = pr.findByRole("P_PARCEIRO");
         Permissao financeiroP = pr.findByRole("P_GESTOR FINANCEIRO");
+        Permissao tl = pr.findByRole("P_TEAM LEADER");
 
         Utilizador utilizador =
                 new Utilizador("sabaco@unilurio.ac.mz", passwordEncoder.encode("12345"));
-        utilizador.setPermissao(Arrays.asList(adminPermissao, financeiroP,parPermissao ));
+        utilizador.setPermissao(Arrays.asList(adminPermissao, financeiroP,parPermissao , tl));
         utilizadorRepository.save(utilizador);
 
 //        Utilizador u = new Utilizador("pmarques@unilurio.ac.mz", passwordEncoder.encode("54321"));

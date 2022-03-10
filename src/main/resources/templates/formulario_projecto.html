@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
   <head>
     <!-- Required meta tags -->
@@ -32,16 +33,18 @@
     </div>
 
     <div class="container main-cadastro">
-        <center><h1>Cadastro de Projecto</h1></center>
+<!--      <div th:if="${projecto.idProjecto == null}"></div> -->
+      <center><h1>Cadastro de Projecto</h1></center>
+<!--        <div th:unless="${projecto.idProjecto == null}"> <center><h1>Editar Projecto</h1></center></div>-->
 
-        <form action="/salvarProjecto" method="post" class="needs-validation" novalidate>
+        <form action="/salvarProjecto" method="post" th:object="${projecto}" class="needs-validation" novalidate>
             <div class="form-row">
-
+        <input type="hidden" th:field="*{idProjecto}"/>
 <!--              <div th:text="${erro}"></div>-->
 
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Nome do Projecto</label>
-                <input type="text" class="form-control" name="nomeProjecto" id="validationCustom01" placeholder="BHA" value="" required>
+                <input type="text" class="form-control" th:field="*{nomeProjecto}" name="nomeProjecto" id="validationCustom01" placeholder="BHA" value="" required>
                 <div class="valid-feedback">
                   Tudo certo!
                 </div>
@@ -49,7 +52,7 @@
 
               <div class="col-md-4 mb-3">
                 <label for="validationCustom03">Local de Implementacao</label>
-                <input type="text" name="localImplementacao" class="form-control" id="validationCustom03" placeholder="Pemba, Metuge e Chiure"  required>
+                <input type="text" name="localImplementacao" th:field="*{localImplementacao}"  class="form-control" id="validationCustom03" placeholder="Pemba, Metuge e Chiure"  required>
                 <div class="valid-feedback">
                   Tudo certo!
                 </div>
@@ -57,7 +60,7 @@
 
                 <div class="col-md-4 mb-3">
                   <label for="validationCustom04">Orcamento</label>
-                  <input type="number" name="orcamento" class="form-control" id="validationCustom04" placeholder="12 000 000" required>
+                  <input type="number" name="orcamento" th:field="*{orcamento}" class="form-control" id="validationCustom04" placeholder="12 000 000" required>
                   <div class="valid-feedback">
                     Tudo certo!
                   </div>
@@ -65,7 +68,7 @@
 
               <div class="col-md-4 mb-3">
                 <label for="validationCustom012">Saldo Disponivel</label>
-                <input type="number" name="saldoDisponivel" class="form-control" id="validationCustom012" placeholder="6 000 000" required>
+                <input type="number" name="saldoDisponivel" th:field="*{saldoDisponivel}"  class="form-control" id="validationCustom012" placeholder="6 000 000" required>
                 <div class="valid-feedback">
                   Tudo certo!
                 </div>
@@ -76,25 +79,25 @@
             <label style="border-bottom: 1px solid lightgray; width: 100%;">Tipo de Moeda</label><br/>
             <div class="form-check form-check-inline">
               <label class="form-check-label" for="inlineRadio15">MZN</label>
-              <input class="form-check-input" type="radio" value="MZN" name="tipoMoeda" id="inlineRadio15" required>
+              <input class="form-check-input" type="radio" th:field="*{tipoMoeda}"  value="MZN" name="tipoMoeda" id="inlineRadio15" required>
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label" for="inlineRadio16">USD</label>
-              <input class="form-check-input" type="radio" value="USD" name="tipoMoeda" id="inlineRadio16" required>
+              <input class="form-check-input" type="radio" th:field="*{tipoMoeda}" value="USD" name="tipoMoeda" id="inlineRadio16" required>
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label" for="inlineRadio17">LIBRA</label>
-              <input class="form-check-input" type="radio" value="LIBRA" name="tipoMoeda" id="inlineRadio17" required>
+              <input class="form-check-input" type="radio" th:field="*{tipoMoeda}" value="LIBRA" name="tipoMoeda" id="inlineRadio17" required>
             </div>
             <div class="form-check form-check-inline">
               <label class="form-check-label" for="inlineRadio18">EURO</label>
-              <input class="form-check-input" type="radio" value="EURO" name="tipoMoeda" id="inlineRadio18" required>
+              <input class="form-check-input" type="radio" th:field="*{tipoMoeda}" value="EURO" name="tipoMoeda" id="inlineRadio18" required>
             </div>
           </div>
 
           <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Data de Inicio</label>
-                <input type="date" name="dataInicio" class="form-control" id="validationCustom08" placeholder="01/01/2020" value="" required>
+                <input type="date" name="dataInicio" th:field="*{dataInicio}" class="form-control" id="validationCustom08" placeholder="01/01/2020" value="" required>
                 <div class="valid-feedback">
                   Tudo certo!
                 </div>
@@ -102,7 +105,7 @@
   
               <div class="col-md-4 mb-3">
                 <label for="validationCustom01">Data de Fim</label>
-                <input type="date" name="dataFim" class="form-control" id="validationCustom09" placeholder="01/05/2021" value="" required>
+                <input type="date" name="dataFim" th:field="*{dataFim}" class="form-control" id="validationCustom09" placeholder="01/05/2021" value="" required>
                 <div class="valid-feedback">
                   Tudo certo!
                 </div>
@@ -112,11 +115,11 @@
             <label style="border-bottom: 1px solid lightgray; width: 100%;">Estado de Execucao</label><br/>
             <div class="form-check form-check-inline">
                 <label class="form-check-label" for="inlineRadio2">Activo</label>
-                <input class="form-check-input" type="radio" value="Activo" name="estado" id="inlineRadio2" required>
+                <input class="form-check-input" type="radio" th:field="*{estado}" value="Activo" name="estado" id="inlineRadio2" required>
             </div>
             <div class="form-check form-check-inline">
                 <label class="form-check-label" for="inlineRadio0">Terminado</label>
-                <input class="form-check-input" type="radio" value="Terminado" name="estado" id="inlineRadio0" required>
+                <input class="form-check-input" type="radio" th:field="*{estado}" value="Terminado" name="estado" id="inlineRadio0" required>
             </div>
 
             <button class="btn btn-primary btn-cadastrar" type="submit">Cadastrar</button>

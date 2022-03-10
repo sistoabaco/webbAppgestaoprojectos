@@ -20,7 +20,7 @@ public class Permissao implements Serializable {
     private int idPermissao;
     private String descricao;
 
-    @ManyToMany(mappedBy = "permissao")
+    @ManyToMany(mappedBy = "permissao", fetch = FetchType.EAGER)
     private Collection <Utilizador> utilizador;
 
     public Permissao(String descricao){

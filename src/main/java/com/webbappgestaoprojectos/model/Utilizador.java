@@ -3,10 +3,13 @@ package com.webbappgestaoprojectos.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Set;
 
 @Data
 @Getter
@@ -42,6 +45,7 @@ public class Utilizador implements Serializable {
         this.username = username;
         this.password = password;
     }
+
 
     @Override
     public String toString(){

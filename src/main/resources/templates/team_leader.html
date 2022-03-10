@@ -2,21 +2,32 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
-    <title>lista_de_projectos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>pagina_de_trabalho</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="css/main.css" rel="stylesheet" />
 
 </head>
 <body>
     <div class="container head">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+
             <a href="/paginaSegura" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <img id="logo" width="60px" src="icons/caritasmz.png"/>
+                <img id="logo" alt="logo" width="60px" th:src="@{icons/caritasmz.png}"/>
                 <h2 class="logo"></h2>
             </a>
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/listaTdR" class="nav-link px-2 link-dark">Lista de TdRs</a></li>
+                <li><a href="/salvarST" class="nav-link px-2 link-dark">Criar Solicitacao de Transporte</a></li>
+            </ul>
 
             <div class="col-md-3 text-end">
                 <a href="/paginaSegura"><button type="button" class="btn btn-outline-primary me-2">Voltar</button></a>
@@ -25,37 +36,16 @@
 
         </header>
     </div>
-    <div class="container>">
-        <h1>Lista de Projectos</h1>
-        <a href="/salvarProjecto" sec:authorize="hasAnyAuthority('P_GESTOR FINANCEIRO')">adicionar novo projecto</a>
+
+    <div class="class container welcome row">
+
+        <div>
+            <img width="100%" alt="c2" src="images/c0.jpg" />
+        </div>
+
     </div>
 
-    <table class="table table-bordered">
-        <thead class="thread thread-dark">
-        <tr>
-            <th scope="col">Nome do Projecto</th>
-            <th scope="col">Local de Implementacao</th>
-            <th scope="col">Data Inicio</th>
-            <th scope="col">Data Fim</th>
-            <th scope="col">Estado</th>
-        </tr>
-        </thead>
-
-        <tbody>
-            <th:block th:each="p : ${projecto}">
-                <tr>
-                    <td> [[${p.nomeProjecto}]]</td>
-                    <td> [[${p.localImplementacao}]]</td>
-                    <td> [[${p.dataInicio}]]</td>
-                    <td> [[${p.dataFim}]]</td>
-                    <td> [[${p.estado}]]</td>
-                    <td><a th:href="@{'/editProjecto/' + ${p.idProjecto}}">Editar</a> </td>
-                    <td><a th:href="@{'/deleteProjecto/' + ${p.idProjecto}}">Apagar</a> </td>                </tr>
-            </th:block>
-        </tbody>
-    </table>
-
-    <div class="container footer">
+        <div class="container footer">
         <footer class="py-5">
             <div class="row">
                 <div class="col-7">
@@ -65,7 +55,7 @@
                         <li class="nav-item mb-2"><a href="/projectos" class="nav-link p-0 text-muted">Projectos</a></li>
                         <li class="nav-item mb-2"><a href="/parceiros" class="nav-link p-0 text-muted">Parceiros</a></li>
                         <li class="nav-item mb-2"><a href="/apoiadores" class="nav-link p-0 text-muted">Apoiadores</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Sobre</a></li>
+                        <li class="nav-item mb-2"><a href="/sobre" class="nav-link p-0 text-muted">Sobre</a></li>
                     </ul>
                 </div>
 
@@ -92,28 +82,7 @@
             </div>
         </footer>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <script>
-        // Exemplo de JavaScript inicial para desativar envios de formulÃ¡rio, se houver campos invÃ¡lidos.
-        (function() {
-            'use strict';
-            window.addEventListener('load', function() {
-                // Pega todos os formulÃ¡rios que nÃ³s queremos aplicar estilos de validaÃ§Ã£o Bootstrap personalizados.
-                var forms = document.getElementsByClassName('needs-validation');
-                // Faz um loop neles e evita o envio
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
 </body>
 </html>

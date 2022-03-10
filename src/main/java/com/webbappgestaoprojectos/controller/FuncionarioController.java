@@ -42,12 +42,9 @@ public class FuncionarioController {
     }
 
     @PostMapping("/salvarFuncionario")
-    public String adicionarFuncionario(@Valid Funcionario f, @Valid Utilizador u, @RequestParam(value = "projeto", required = true)  Collection <Projecto> proj,
+    public String adicionarFuncionario(@Valid Funcionario f, @Valid Utilizador u, @RequestParam(value = "pro", required = true)  Collection <Projecto> proj,
     Categoria cat, BindingResult result, @RequestParam(value = "permi", required = true) Collection<Permissao> role, Model model){
-
-        System.out.println("Chega aqui!!!");
 //        model.addAttribute("erro", "erro ao salvar funcionario");
-
 
         if (u.getUsername() .equals(ur.findByUsername(u.getUsername()))){
             model.addAttribute("erro", "username existente!!! informe outro username");
@@ -55,6 +52,7 @@ public class FuncionarioController {
         }
 
         u.setPermissao(role);
+        u.setPassword(passwordEncoder.encode(u.getPassword()));
         ur.save(u);
 
         f.setCategoria(cat);

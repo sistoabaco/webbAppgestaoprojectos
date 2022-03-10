@@ -1,5 +1,6 @@
 package com.webbappgestaoprojectos.security;
 
+import com.webbappgestaoprojectos.model.Utilizador;
 import com.webbappgestaoprojectos.repository.UtilizadorRepository;
 import com.webbappgestaoprojectos.service.SSUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +33,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
                 .antMatchers("/h2", "/","/projectos", "/actividades", "/apoiadores", "/parceiros","/sobre").permitAll()
                 .antMatchers( "/gestorFinanceiro", "/salvarFuncionario","/salvarParceiro", "/salvarProjecto").access("hasAnyAuthority('P_GESTOR FINANCEIRO','ADMIN')")
+                .antMatchers( "/listaUtilizador").access("hasAuthority('ADMIN')")
+                .antMatchers( "/salvarST").access("hasAuthority('P_TEAM LEADER')")
                 //Para qualquer requisiÃ§Ã£o (anyRequest) Ã© preciso estar (anyRequest)
                 .anyRequest()
                 // autenticado (authenticated)
                 .authenticated()
 
                 // Aqui dizemos que temos uma pÃ¡gina customizada.
-                .and().formLogin().loginPage("/login")
+                .and().formLogin().loginPage("/login").permitAll()
                 // Mesmo sendo a pÃ¡gina de login, precisamos avisar
                 // ao Spring Security para liberar o acesso a ela.
-                .permitAll()
                 .defaultSuccessUrl("/paginaSegura")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

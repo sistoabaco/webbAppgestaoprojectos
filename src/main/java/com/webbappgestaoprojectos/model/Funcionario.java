@@ -41,7 +41,7 @@ public class Funcionario {
     @OneToOne
     private Utilizador utilizador;
 
-    @ManyToMany
+    @ManyToMany (cascade = CascadeType.ALL)
     @JoinTable(
             name = "funcionario_projecto",
             joinColumns = @JoinColumn(
@@ -52,6 +52,6 @@ public class Funcionario {
 
     @Override
     public String toString(){
-        return this.primeiroNome;
+        return this.primeiroNome + " " + this.sobrenome;
     }
 }
