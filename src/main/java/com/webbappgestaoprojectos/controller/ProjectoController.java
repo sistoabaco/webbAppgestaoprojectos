@@ -38,7 +38,7 @@ public class ProjectoController {
     @GetMapping("/editProjecto/{idProjecto}")
     public String editFormProjecto(@PathVariable("idProjecto") Integer idProjecto, Model model){
         model.addAttribute("projecto", projectoRepository.findById(idProjecto).get());
-        return "formulario_projecto";
+        return "edit_formulario_projecto";
     }
 
     @GetMapping("/deleteProjecto/{idProjecto}")
