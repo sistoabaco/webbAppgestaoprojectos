@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>lista_solicitacao_transporte</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="css/main.css" rel="stylesheet" />
+
+</head>
+<body>
+
+        <div class="container head">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+                <a href="/paginaSegura" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                    <img id="logo" width="60px" src="icons/caritasmz.png"/>
+                    <h2 class="logo"></h2>
+                </a>
+
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/listaSTransporte" class="nav-link px-2 link-dark">Lista de Solicitacao de Transporte</a></li>
+                    <li><a href="/listaTdR" class="nav-link px-2 link-dark">Lista de TdRs</a></li>
+                    <li><a href="/salvarTdR" class="nav-link px-2 link-dark">Criar TdR</a></li>
+                    <li><a href="/salvarST" class="nav-link px-2 link-dark">Criar Solicitacao de Transporte</a></li>
+                </ul>
+
+                <div class="col-md-3 text-end">
+                    <a href="/paginaSegura"><button type="button" style="top: auto" class="btn btn-outline-primary me-2">Voltar</button></a>
+                    <!--<button type="button" class="btn btn-primary">Sign-up</button>-->
+                </div>
+
+            </header>
+        </div>
+
+        <div class="container>">
+           <center> <h1>Lista de solicitacao de Transporte por Aprovar</h1></center>
+        </div>
+
+        <table class="table table-bordered">
+            <thead class="thread thread-dark">
+            <tr>
+<!--                <th scope="col">tipo De Viatura</th>-->
+<!--                <th scope="col">quantidade de Viaturas</th>-->
+                <th scope="col">solitante Responsavel</th>
+                <th scope="col">Origem</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Data Inicio</th>
+                <th scope="col">Data Fim</th>
+<!--                <th scope="col">Necessidade de Alojamento</th>-->
+<!--                <th scope="col">dias de alojamento</th>-->
+                <th scope="col">motivos da solicitacao
+                <th scope="col">Projecto</th>
+<!--                <th scope="col">Accao</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="st : ${STransporteC}">
+                <tr>
+<!--                    <td> [[${st.tipoDeViatura}]]</td>-->
+<!--                    <td> [[${st.qtdViaturas}]]</td>-->
+                    <td> <a th:href="@{'/detalheST/' + ${st.idSolicitacaoTransporte}}"> [[${st.solicitanteResponsavel}]]</a></td>
+                    <td> [[${st.origem}]]</td>
+                    <td> [[${st.destino}]]</td>
+                    <td> [[${st.dataInicio}]]</td>
+                    <td> [[${st.dataFim}]]</td>
+<!--                    <td> [[${st.qtdDias}]]</td>-->
+<!--                    <td> [[${st.qtdPessoas}]]</td>-->
+                    <td> [[${st.motivoDaSolicitacao}]]</td>
+                    <td> [[${st.getProjecto}]]</td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

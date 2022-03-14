@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 
-//@Entity
+@Entity
 public class FormaPagamento {
 
     @Id

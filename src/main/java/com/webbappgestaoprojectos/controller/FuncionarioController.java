@@ -38,6 +38,7 @@ public class FuncionarioController {
         model.addAttribute("permissao", pr.findAll());
         model.addAttribute("categoria", cr.findAll());
         model.addAttribute("projecto", projectoRepository.findAll());
+        model.addAttribute("funcionario", new Funcionario());
         return "adicionar_funcionario";
     }
 
@@ -61,6 +62,23 @@ public class FuncionarioController {
 
         fr.save(f);
 
+        return "redirect:/listaFuncionario";
+    }
+
+    @GetMapping("/editarFuncionario/{idFuncionario}")
+    public String editFormAdFuncionario(@PathVariable("idFuncionario") Integer id,
+                                        Model model){
+        model.addAttribute("funcionario", fr.findById(id).get());
+        model.addAttribute("permissao", pr.findAll());
+        model.addAttribute("categoria", cr.findAll());
+        model.addAttribute("projecto", projectoRepository.findAll());
+
+        return "edit_formulario_adic_funcionario";
+    }
+
+    @GetMapping("/deleteFuncionario/{idFuncionario}")
+    public String deleteFuncionario(@PathVariable("idFuncionario") Integer idFuncionario){
+        fr.deleteById(idFuncionario);
         return "redirect:/listaFuncionario";
     }
 

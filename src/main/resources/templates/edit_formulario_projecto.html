@@ -39,7 +39,7 @@
 
         <form action="/salvarProjecto" method="post" th:object="${projecto}" class="needs-validation" novalidate>
             <div class="form-row">
-        <input type="hidden" th:field="*{idProjecto}"/>
+            <input type="hidden" th:field="*{idProjecto}"/>
 <!--              <div th:text="${erro}"></div>-->
 
               <div class="col-md-4 mb-3">
@@ -122,7 +122,7 @@
                 <input class="form-check-input" type="radio" th:field="*{estado}" value="Terminado" name="estado" id="inlineRadio0" required>
             </div>
 
-            <button class="btn btn-primary btn-cadastrar" type="submit">Cadastrar</button>
+            <button class="btn btn-primary btn-cadastrar" type="submit">Editar</button>
             </div>
 
           </form>

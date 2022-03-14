@@ -34,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/h2", "/","/projectos", "/actividades", "/apoiadores", "/parceiros","/sobre").permitAll()
                 .antMatchers( "/gestorFinanceiro", "/salvarFuncionario","/salvarParceiro", "/salvarProjecto").access("hasAnyAuthority('P_GESTOR FINANCEIRO','ADMIN')")
                 .antMatchers( "/listaUtilizador").access("hasAuthority('ADMIN')")
-                .antMatchers( "/salvarST").access("hasAuthority('P_TEAM LEADER')")
+                .antMatchers( "/salvarST").access("hasAnyAuthority('P_TEAM LEADER', 'P_COORDENADOR')")
                 //Para qualquer requisiÃ§Ã£o (anyRequest) Ã© preciso estar (anyRequest)
                 .anyRequest()
                 // autenticado (authenticated)

@@ -1,9 +1,11 @@
 package com.webbappgestaoprojectos.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -20,29 +22,35 @@ public class SolicitacaoTransporte implements Serializable {
 
     private String tipoDeViatura;
     private int qtdViaturas;
-    private String solitanteResponsavel;
+    private String solicitanteResponsavel;
     private String acompanhante;
     private String origem;
     private String destino;
-    private String dataInicio;
-    private String dataFim;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date dataInicio;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date dataFim;
+
     private String necessidadeAlojamento;
     private int qtdDias;
     private int qtdPessoas;
     private String motivoDaSolicitacao;
 
-    private String vistoCoordenador;
-    private String dataAprovacaoCoordenador;
+    private String coordenador;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private LocalDate dataAprovacaoCoordenador;
 
-    private String vistoLogistico;
-        private String dataAprovacaoLogistico;
+    private String logistico;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private LocalDate dataAprovacaoLogistico;
 
     private String status; //rejeitado/aprovado/cancelado/pendente
     private String motivo_rejeicao_cancelamento;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Projecto projecto;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Funcionario funcionario;
 }

@@ -10,7 +10,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 
-//@Entity
+@Entity
 public class FornecedorTransporte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

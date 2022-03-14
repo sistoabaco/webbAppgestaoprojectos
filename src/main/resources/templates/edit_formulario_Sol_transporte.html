@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>editar_solicitacao_transporte</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="css/main.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="container head">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+        <a href="/paginaSegura" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img id="logo" width="60px" src="icons/caritasmz.png"/>
+            <h2 class="logo"></h2>
+        </a>
+
+        <div class="col-md-3 text-end">
+            <a href="/paginaSegura"><button type="button" class="btn btn-outline-primary me-2">Voltar</button></a>
+            <!--<button type="button" class="btn btn-primary">Sign-up</button>-->
+        </div>
+    </header>
+</div>
+
+
+<div class="container main-cadastro">
+
+    <!--        <div th:if="${solicitacaoTransporte.idSolicitacaoTransporte == null}"> </div>-->
+    <center><h1>Editar Solicitacao de Transporte</h1></center>
+    <!--        <div th:unless="${solicitacaoTransporte.idSolicitacaoTransporte == null}"> <center><h1>Editar Solicitacao de Transporte</h1></center></div>-->
+
+    <form method="Post" action="/editarST"  th:object="${solicitacaoTransporte}" class="row gy-2 gx-3 align-items-center">
+
+        <input type="hidden" th:field="*{idSolicitacaoTransporte}">
+
+        <div class="form-group mb-3 col-md-4">
+            <label class="col-sd-4">Projecto</label><br>
+            <div class="col-sm-8 text-left">
+                <th:block th:each="proj : ${projecto}">
+                    <input type="checkbox"  name="pro" id="pro"
+                           th:text="${proj.nomeProjecto}"  th:value="${proj.idProjecto}"
+                    th:field="*{projecto}"
+                    />
+                    <br>
+                </th:block>
+            </div>
+            <div class="valid-feedback"> Tudo certo! </div>
+        </div>
+
+        <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingSelect">Tipo de Viatura</label>
+            <select name="tipoDeViatura" th:field="*{tipoDeViatura}" class="form-select" id="autoSizingSelect">
+                <option value="">Selecione o tipo de viatura</option>
+                <option value="Pickup 5 lugares 4x4 com traccao">Pickup 5 lugares 4x4 com traccao</option>
+                <option value="Minibus 15 lugares">Minibus 15 lugares</option>
+                <option value="Minibus >15 lugares">Minibus >15 lugares</option>
+                <option value="Camiao de 2-6 toneladas">Camiao de 2-6 toneladas</option>
+                <option value="Camiao de 7-15 toneladas">Camiao de 7-15 toneladas</option>
+                <option value="Camiao > 15 toneladas">Camiao > 15 toneladas</option>
+                <option value="Outro">Outro</option>
+            </select>
+            <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom04">Quantidade de Viaturas</label>
+            <input type="number" th:field="*{qtdViaturas}" name="qtdViaturas" class="form-control" id="validationCustom04" placeholder="2" required>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+        </div>
+
+
+        <div class="form-group mb-3 col-md-4">
+            <label>Solicitante Responsavel</label>
+            <select name="funcionario" id="funcionario" class="custom-select form-control" style="max-width: 348px;" required>
+                <option value="">Selecione o solicitante...</option>
+                <option th:value="${funcionarioL.idFuncionario}"
+                        th:text="${funcionarioL.toString()}"
+                th:field="*{funcionario}"></option>
+            </select>
+            <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom10">Acompanhantes</label>
+            <input type="text" th:field="*{acompanhante}" name="acompanhante" class="form-control" id="validationCustom10" placeholder="Almeida Garido" value="" required>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingSelect">Local de Origem da actividade</label>
+            <select th:field="*{origem}" name="origem" class="form-select" id="autoSizingSelectn" required>
+                <option value="" >Origem</option>
+                <option value="Pemba">Pemba</option>
+                <option value="Chiure">Chiure</option>
+                <option value="Mecufi">Mecufi</option>
+                <option value="Namuno">Namumo</option>
+                <option value="Ancuabe">Ancuabe</option>
+                <option value="Montepuez">Montepuez</option>
+                <option value="Meluco">Meluco</option>
+                <option value="Outro">Outro</option>
+            </select>
+            <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
+        </div>
+
+        <div class="col-auto">
+            <label class="visually-hidden" for="autoSizingSelect">Local de Destino da actividade</label>
+            <select th:field="*{destino}" name="destino" class="form-select" id="autoSizingSelectm" required>
+                <option value="" >Destino</option>
+                <option value="Pemba">Pemba</option>
+                <option value="Chiure">Chiure</option>
+                <option value="Mecufi">Mecufi</option>
+                <option value="Namuno">Namumo</option>
+                <option value="Ancuabe">Ancuabe</option>
+                <option value="Montepuez">Montepuez</option>
+                <option value="Meluco">Meluco</option>
+                <option value="Outro">Outro</option>
+            </select>
+            <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom1">Data de Inicio da actividade</label>
+            <input type="date" th:field="*{dataInicio}" name="dataInicio" class="form-control" id="validationCustom1" placeholder="01/03/2022" value="" required>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom0">Data de termino da actividade</label>
+            <input type="date" th:field="*{dataFim}" name="dataFim" class="form-control" id="validationCustom0" placeholder="14/03/2022" value="" required>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+        </div>
+
+        <div  class="mb-3 col-md-4" style="border: 1px solid lightgray; border-radius: 3px; padding: 5px; max-width: 348px;">
+            <label style="border-bottom: 1px solid lightgray; width: 100%;">Necessidade de Alojamento</label><br/>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineRadio1">Sim</label>
+                <input class="form-check-input" th:field="*{necessidadeAlojamento}" type="radio" value="Sim" name="necessidadeAlojamento" id="inlineRadio1" required>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineRadio2">Nao</label>
+                <input class="form-check-input" th:field="*{necessidadeAlojamento}" type="radio" value="Nao" name="necessidadeAlojamento" id="inlineRadio2" required>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom07">Quantidade de dias das Actividade</label>
+            <input type="number" th:field="*{qtdDias}" name="qtdDias" class="form-control" id="validationCustom07" placeholder="5" required>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom06">Quantidade de Pessoas Envolvidas</label>
+            <input type="number" th:field="*{qtdPessoas}" name="qtdPessoas" class="form-control" id="validationCustom06" placeholder="3" required>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationCustom11">Motivo da Solicitacao da viatura</label>
+            <input type="text" th:field="*{motivoDaSolicitacao}" name="motivoDaSolicitacao" class="form-control" id="validationCustom11" placeholder="actividades de construcao de abrigos" value="" required>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+        </div>
+        <button class="btn btn-primary btn-cadastrar" type="submit">Editar</button>
+    </form>
+
+</div>
+
+
+<div class="container footer">
+    <footer class="py-5">
+        <div class="row">
+            <div class="col-7">
+                <h5>Section</h5>
+                <ul class="nav">
+                    <li class="nav-item mb-2"><a href="/paginaSegura" class="nav-link p-0 text-muted">Home</a></li>
+                    <li class="nav-item mb-2"><a href="/projectos" class="nav-link p-0 text-muted">Projectos</a></li>
+                    <li class="nav-item mb-2"><a href="/parceiros" class="nav-link p-0 text-muted">Parceiros</a></li>
+                    <li class="nav-item mb-2"><a href="/apoiadores" class="nav-link p-0 text-muted">Apoiadores</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Sobre</a></li>
+                </ul>
+            </div>
+
+            <div class="col-4 offset-1">
+                <form>
+                    <h5>Subscreva a nossa newslatter</h5>
+                    <p>Mensalmente receba noticias e actualizacoes dos nosso projectos</p>
+                    <div class="d-flex w-100 gap-2">
+                        <label for="newsletter1" class="visually-hidden">Email address</label>
+                        <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                        <button class="subscrever btn btn-primary" type="button">Subscrever</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between py-4 my-4 border-top">
+            <p>&copy; 2021 Caritas, Inc. All rights reserved.</p>
+            <ul class="list-unstyled d-flex">
+                <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg>T</a></li>
+                <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg>I</a></li>
+                <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg>F</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script>
+    // Exemplo de JavaScript inicial para desativar envios de formulÃ¡rio, se houver campos invÃ¡lidos.
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Pega todos os formulÃ¡rios que nÃ³s queremos aplicar estilos de validaÃ§Ã£o Bootstrap personalizados.
+            var forms = document.getElementsByClassName('needs-validation');
+            // Faz um loop neles e evita o envio
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+</body>
+</html>

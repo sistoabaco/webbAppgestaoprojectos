@@ -34,8 +34,7 @@
         <table class="table table-bordered">
             <thead class="thread thread-dark">
             <tr>
-                <th scope="col">Primeiro Nome</th>
-                <th scope="col">Sobrenome</th>
+                <th scope="col">Nome</th>
                 <th scope="col">Data de Nascimento</th>
                 <th scope="col">Categoria</th>
                 <th scope="col">Celular</th>
@@ -51,8 +50,7 @@
             <tbody>
                 <th:block th:each="f : ${funcionario}">
                     <tr>
-                    <td th:inline="text">[[${f.primeiroNome}]]</td>
-                    <td th:inline="text">[[${f.sobrenome}]]</td>
+                    <td th:inline="text">[[${f.toString()}]]</td>
                     <td th:inline="text">[[${f.dataNascimento}]]</td>
                     <td th:inline="text">[[${f.getCategoria}]]</td>
                     <td th:inline="text">[[${f.celular}]]</td>
@@ -62,7 +60,9 @@
                     <td th:inline="text">[[${f.dataInicio}]]</td>
                     <td th:inline="text">[[${f.dataFim}]]</td>
                     <td th:inline="text">[[${f.getProjecto}]]</td>
-                </tr>
+                        <td><a th:href="@{'/editarFuncionario/' + ${f.idFuncionario}}">Editar</a> </td>
+                        <td><a th:href="@{'/deleteFuncionario/' + ${f.idFuncionario}}">Apagar</a> </td>
+                    </tr>
             </th:block>
             </tbody>
         </table>

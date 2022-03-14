@@ -2,6 +2,7 @@ package com.webbappgestaoprojectos.model;
 
 import lombok.*;
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 
 @Getter
@@ -10,7 +11,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 
-//@Entity
+@Entity
 public class RequisicaoPagamento {
 
     @Id
@@ -23,22 +24,24 @@ public class RequisicaoPagamento {
     private String tipoMoeda;
     private String cotacao_proforma_adiantamento_nr;
     private String valorPorExtenso;
+
     private String preparadoPor;
     private String vistoCoordenador;
     private String vistoContabilista;
     private String vistoFinanca;
     private String vistoDireccao;
 
-    private String dataPreparadoPor;
-    private String dataVistoCoordenador;
-    private String dataVistoContabilista;
-    private String dataVistoFinanca;
-    private String dataVistoDireccao;
+    private LocalDate dataPreparadoPor;
+    private LocalDate dataVistoCoordenador;
+    private LocalDate dataVistoContabilista;
+    private LocalDate dataVistoFinanca;
+    private LocalDate dataVistoDireccao;
     private String status; //rejeitado/aprovado/cancelado/pendente
     private String motivo_rejeicao_cancelamento;
 
     @OneToMany
     private Collection <FormaPagamento> formaPagamento;
+
     @OneToOne
     private TermoReferencia termoReferencia;
 }

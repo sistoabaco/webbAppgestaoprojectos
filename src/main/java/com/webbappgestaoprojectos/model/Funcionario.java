@@ -29,19 +29,19 @@ public class Funcionario {
     private String dataInicio;
     private String dataFim;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Categoria categoria;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection <SolicitacaoTransporte> solicitacaoTransporte;
 
-    @OneToMany
+    @OneToMany (cascade = CascadeType.ALL)
     private Collection <TermoReferencia> termoReferencia;
 
     @OneToOne
     private Utilizador utilizador;
 
-    @ManyToMany (cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "funcionario_projecto",
             joinColumns = @JoinColumn(
@@ -49,6 +49,21 @@ public class Funcionario {
             inverseJoinColumns = @JoinColumn(
                     name = "idProjecto", referencedColumnName = "idProjecto"))
     private Collection <Projecto> projecto;
+
+    public Funcionario(String primeiroNome, String sobrenome, String genero, String estadoCivil,
+                       String dataNascimento, String endereco, String distrito, String celular,
+                       String dataInicio, String dataFim) {
+        this.primeiroNome = primeiroNome;
+        this.sobrenome = sobrenome;
+        this.genero = genero;
+        this.estadoCivil = estadoCivil;
+        this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
+        this.distrito = distrito;
+        this.celular = celular;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+    }
 
     @Override
     public String toString(){

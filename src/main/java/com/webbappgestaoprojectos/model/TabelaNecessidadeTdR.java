@@ -26,5 +26,4 @@ public class TabelaNecessidadeTdR implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private TermoReferencia termoReferencia;
-
 }
