@@ -87,8 +87,8 @@ public class DataLoader implements CommandLineRunner{
 
         Categoria cat = cr.findByCategoria("ADMIN");
 
-        Funcionario f = new Funcionario("Admin","Administrador", "admin", "admin", "admin", "admin","admin"
-                , "admin", "admin", "admin");
+        Funcionario f = new Funcionario("Admin","Administrador", "admin", "admin", null, "admin","admin"
+                , "admin", null, null);
         f.setUtilizador(utilizador);
         f.setProjecto(Arrays.asList(p));
         f.setCategoria(cat);

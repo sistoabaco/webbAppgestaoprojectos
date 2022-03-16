@@ -3,6 +3,7 @@ package com.webbappgestaoprojectos.model;
 import lombok.*;
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
 
 @Data
 @Getter
@@ -22,12 +23,12 @@ public class Funcionario {
     private String sobrenome;
     private String genero;
     private String estadoCivil;
-    private String dataNascimento;
+    private Date dataNascimento;
     private String endereco;
     private String distrito;
     private String celular;
-    private String dataInicio;
-    private String dataFim;
+    private Date dataInicio;
+    private Date dataFim;
 
     @ManyToOne
     private Categoria categoria;
@@ -51,8 +52,8 @@ public class Funcionario {
     private Collection <Projecto> projecto;
 
     public Funcionario(String primeiroNome, String sobrenome, String genero, String estadoCivil,
-                       String dataNascimento, String endereco, String distrito, String celular,
-                       String dataInicio, String dataFim) {
+                       Date dataNascimento, String endereco, String distrito, String celular,
+                       Date dataInicio, Date dataFim) {
         this.primeiroNome = primeiroNome;
         this.sobrenome = sobrenome;
         this.genero = genero;
