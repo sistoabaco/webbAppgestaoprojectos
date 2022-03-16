@@ -32,26 +32,9 @@
     <div class="container main-cadastro">
         <center> <h1>Cadastro de Funcionario</h1></center>
 
-        <form th:action="@{/salvarFuncionario}" th:object="${funcionario}" method="post" class="needs-validation" novalidate>
+        <form th:action="@{/salvarEditFuncionario}" th:object="${funcionario}" method="post" class="needs-validation" novalidate>
             <div class="form-row">
             <input type="hidden" th:field="*{idFuncionario}"/>
-                <h3>Dados de Utilizador:</h3>
-
-                <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">Username</label>
-                    <input type="e-mail" th:field="*{utilizador}" name="username" class="form-control" id="validationCustom010" placeholder="user@domain" value="" required>
-                    <div class="valid-feedback">
-                        Tudo certo!
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label for="validationCustom03">Password</label>
-                    <input type="password" name="password" class="form-control" id="validationCustom11" placeholder="***********" value="" required>
-                    <div class="valid-feedback">
-                        Tudo certo!
-                    </div>
-                </div>
 
                 <h3>Dados Pessoais:</h3>
                 <div class="col-md-4 mb-3">

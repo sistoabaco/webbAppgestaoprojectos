@@ -38,8 +38,7 @@
             <th scope="col">Data Inicio</th>
             <th scope="col">Data Fim</th>
             <th scope="col">Estado</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Apagar</th>
+            <th scope="col" sec:authorize="hasAuthority('ADMIN')">Accoes</th>
         </tr>
         </thead>
 
@@ -51,8 +50,10 @@
                     <td> [[${p.dataInicio}]]</td>
                     <td> [[${p.dataFim}]]</td>
                     <td> [[${p.estado}]]</td>
-                    <td><a th:href="@{'/editProjecto/' + ${p.idProjecto}}">Editar</a> </td>
-                    <td><a th:href="@{'/deleteProjecto/' + ${p.idProjecto}}">Apagar</a> </td>                </tr>
+                    <td><a th:href="@{'/editProjecto/' + ${p.idProjecto}}" sec:authorize="hasAuthority('ADMIN')">Editar</a>
+                        <a th:href="@{'/apagarProjecto/' + ${p.idProjecto}}" sec:authorize="hasAuthority('ADMIN')">Apagar</a>
+                    </td>
+                </tr>
             </th:block>
         </tbody>
     </table>

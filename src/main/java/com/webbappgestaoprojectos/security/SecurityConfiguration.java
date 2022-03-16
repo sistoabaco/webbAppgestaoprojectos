@@ -33,7 +33,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
                 .antMatchers("/h2", "/","/projectos", "/actividades", "/apoiadores", "/parceiros","/sobre").permitAll()
                 .antMatchers( "/gestorFinanceiro", "/salvarFuncionario","/salvarParceiro", "/salvarProjecto").access("hasAnyAuthority('P_GESTOR FINANCEIRO','ADMIN')")
-                .antMatchers( "/listaUtilizador").access("hasAuthority('ADMIN')")
                 .antMatchers( "/salvarST").access("hasAnyAuthority('P_TEAM LEADER', 'P_COORDENADOR')")
                 //Para qualquer requisiÃ§Ã£o (anyRequest) Ã© preciso estar (anyRequest)
                 .anyRequest()

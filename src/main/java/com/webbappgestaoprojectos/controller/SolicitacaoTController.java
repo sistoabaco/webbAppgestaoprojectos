@@ -74,7 +74,8 @@ public class SolicitacaoTController {
         st.setSolicitanteResponsavel(f.toString());
         st.setStatus("Pendente");
 
-        if(f.getCategoria().equals("coordenador")){
+        if( f.getCategoria().getDescricao().equalsIgnoreCase("COORDENADOR")){
+//            System.out.println("entrra");
             st.setCoordenador(f.toString());
             st.setDataAprovacaoCoordenador(LocalDate.now());
             str.save(st);

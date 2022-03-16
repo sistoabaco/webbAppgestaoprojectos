@@ -47,7 +47,7 @@ public class ParceiroController {
     public String salvarParceiros(@Valid Parceiro parceiro, @Valid Utilizador u, @RequestParam(value = "pro", required = true)  Collection <Projecto> proj,
         BindingResult result, @RequestParam(value = "permi", required = true)  Collection <Permissao> role, Model model){
 
-//        System.out.println("rolePro " + proj);
+//        System.out.println("roleProSize " + role.size());
 
         u.setPermissao(role);
         u.setPassword(passwordEncoder.encode(u.getPassword()));
@@ -68,4 +68,29 @@ public class ParceiroController {
 
         return"redirect:/listaParceiro";
     }
+
+    @GetMapping("/detalhesParceiro/{username}")
+    public String detalhesFuncionario(@PathVariable("username") String username,
+                                      Model model){
+        model.addAttribute("p", parceiroRepository.findByUtilizador(utilizadorRepository.findByUsername(username)));
+        return "detalhes_parceiro";
+    }
+
+    @GetMapping("/apagarParceiro/{username}")
+    public String apagarParceiro(@PathVariable("username") String user){
+        Utilizador utilizador = utilizadorRepository.findByUsername(user);
+        Parceiro parceiro = parceiroRepository.findByUtilizador(utilizador);
+
+        parceiroRepository.delete(parceiro);
+        utilizadorRepository.delete(utilizador);
+        return "redirect:/listaParceiro";
+    }
+
+    @GetMapping("/editarParceiro/{idParceiro}")
+    public String editFormParceiro(@PathVariable("idParceiro") Integer id){
+        System.out.println("entrou: " + id);
+//        return "edit_formulario_parceiro";
+        return "redirect:/listaParceiro";
+    }
+
 }

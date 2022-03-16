@@ -41,8 +41,8 @@ public class ProjectoController {
         return "edit_formulario_projecto";
     }
 
-    @GetMapping("/deleteProjecto/{idProjecto}")
-    public String deleteProjecto(@PathVariable("idProjecto") Integer idProjecto){
+    @GetMapping("/apagarProjecto/{idProjecto}")
+    public String apagarProjecto(@PathVariable("idProjecto") Integer idProjecto){
         projectoRepository.deleteById(idProjecto);
         return "redirect:/listaProjecto";
     }

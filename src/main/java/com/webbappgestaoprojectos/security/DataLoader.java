@@ -47,10 +47,10 @@ public class DataLoader implements CommandLineRunner{
         Permissao financeiroP = pr.findByRole("P_GESTOR FINANCEIRO");
         Permissao tlP = pr.findByRole("P_TEAM LEADER");
         Permissao cP = pr.findByRole("P_COORDENADOR");
-        Permissao cL = pr.findByRole("P_LOGISTICO");
+        Permissao cL = pr.findByRole("P_LOGISTICA");
 
         Utilizador utilizador =
-                new Utilizador("sabaco@unilurio.ac.mz", passwordEncoder.encode("12345"));
+                new Utilizador("admin@domain.com", passwordEncoder.encode("12345"));
         utilizador.setPermissao(Arrays.asList(adminPermissao, financeiroP,parPermissao , tlP, cP, cL));
         ur.save(utilizador);
 
@@ -71,19 +71,19 @@ public class DataLoader implements CommandLineRunner{
         parceiro.setProjecto( Arrays.asList(p));
         paR.save(parceiro);
 
-        cr.save (new Categoria("ADMIN", 0.0));
+         cr.save (new Categoria("ADMIN", 0.0));
          cr.save (new Categoria("TEAM LEADER", 30000.0));
          cr.save(new Categoria("COORDENADOR", 80000.0));
          cr.save(new Categoria("OFICIAL DE MEAL", 30000.0));
          cr.save(new Categoria("GESTOR FINANCEIRO", 135000.0));
-//       cr.sava( new Categoria("GESTOR DE PROGRAMAS", 150000.0));
+         cr.save(new Categoria("GESTOR DE PROGRAMAS", 150000.0));
          cr.save(new Categoria("DIRECTOR", 200000.0));
 //        Categoria c7 = new Categoria("CONTABILISTA", 30000.0);
-//        Categoria c8 = new Categoria("OFICIAL DE LOGISTICA", 50000.0);
+         cr.save(new Categoria("OFICIAL DE LOGISTICA", 50000.0));
 //        Categoria c9 = new Categoria("ASSISTENTE DE LOGISTICA", 30000.0);
 //        Categoria c10 = new Categoria("SECRETARIA", 30000.0);
 //        Categoria c11 = new Categoria("FIEL DE ARMAZEM", 30000.0);
-//        Categoria c12 = new Categoria("OUTROS", 50000.0);
+          cr.save(new Categoria("OUTROS", 50000.0));
 
         Categoria cat = cr.findByCategoria("ADMIN");
 

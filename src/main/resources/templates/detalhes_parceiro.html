@@ -19,44 +19,40 @@
         </a>
 
         <div class="col-md-3 text-end">
-            <a href="/paginaSegura"><button type="button" class="btn btn-outline-primary me-2">Voltar</button></a>
+            <a href="/listaParceiro"><button type="button" class="btn btn-outline-primary me-2">Voltar</button></a>
             <!--<button type="button" class="btn btn-primary">Sign-up</button>-->
         </div>
     </header>
 </div>
 
 <div class="container>">
-    <h1>lista de Parceiros</h1>
-    <a href="/salvarParceiro" sec:authorize="hasAnyAuthority('P_GESTOR FINANCEIRO')">adicionar novo parceiro</a>
-</div>
-
+    <h1>Detalhes do Parceiro</h1>
 <table class="table table-bordered">
     <thead class="thread thread-dark">
     <tr>
-        <th scope="col">Utilizador</th>
-        <th scope="col">Nome Completo</th>
+        <th scope="col">Nome do Parceiro</th>
+        <th scope="col">NUIT</th>
+        <th scope="col">Endereco</th>
+        <th scope="col">E-mail</th>
         <th scope="col">Projectos</th>
         <th scope="col">Privilegios</th>
-        <th scope="col" sec:authorize="hasAuthority('ADMIN')">Accoes</th>
     </tr>
     </thead>
 
     <tbody>
-        <th:block th:each="p : ${financiador}">
+        <th:block th:object="${p}">
             <tr>
-                <td> <a th:href="@{'/detalhesParceiro/' + ${p.getUtilizador.toString()}}">
-                    [[${p.getUtilizador.toString()}]]</a>
-                </td>
                 <td> [[${p.nomeCompleto}]]</td>
+                <td> [[${p.nuit}]]</td>
+                <td> [[${p.endereco}]]</td>
+                <td> [[${p.email}]]</td>
                 <td> [[${p.getProjecto}]]</td>
                 <td> [[${p.getUtilizador.getPermissao}]]</td>
-                <td><a th:href="@{'/editarParceiro/' +${p.idParceiro}}" sec:authorize="hasAuthority('ADMIN')"> Editar</a>
-                    <a th:href="@{'/apagarParceiro/' +${p.getUtilizador.toString()}}" sec:authorize="hasAuthority('ADMIN')">Apagar</a>
-                </td>
             </tr>
         </th:block>
     </tbody>
 </table>
+</div>
 <div class="container footer">
     <footer class="py-5">
         <div class="row">

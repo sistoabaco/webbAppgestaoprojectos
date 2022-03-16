@@ -26,6 +26,8 @@ public class FuncionarioController {
     ProjectoRepository projectoRepository;
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    ParceiroRepository parceiroRepository;
 
     @RequestMapping(value = "/listaFuncionario", method = RequestMethod.GET)
     public String listaFuncionario(Model model){
@@ -76,10 +78,49 @@ public class FuncionarioController {
         return "edit_formulario_adic_funcionario";
     }
 
-    @GetMapping("/deleteFuncionario/{idFuncionario}")
-    public String deleteFuncionario(@PathVariable("idFuncionario") Integer idFuncionario){
-        fr.deleteById(idFuncionario);
+//    @PostMapping("/salvarEditFuncionario/{idFuncionario}")
+//    public String editFuncionario(@PathVariable("idFuncionario") Integer id, Model model){
+//
+//        if (u.getUsername() .equals(ur.findByUsername(u.getUsername()))){
+//            model.addAttribute("erro", "username existente!!! informe outro username");
+//            return "adicionar_funcionario";
+//        }
+//
+//        u.setPermissao(role);
+//        u.setPassword(passwordEncoder.encode(u.getPassword()));
+//        ur.save(u);
+//
+//        f.setCategoria(cat);
+//        f.setProjecto(proj);
+//        f.setUtilizador(u);
+//
+//        fr.save(f);
+//
+//        return "redirect:/listaFuncionario";
+//    }
+
+    @GetMapping("/apagarFuncionario/{idFuncionario}")
+    public String apagarFuncionario(@PathVariable("idFuncionario") Integer idFuncionario){
+
+        Funcionario funcionario = fr.findById(idFuncionario).get();
+        Utilizador utilizador = ur.findByUsername(funcionario.getUtilizador().getUsername());
+
+        if(utilizador.getUsername().equalsIgnoreCase("admin@domain.com")){
+            fr.delete(funcionario);
+            ur.delete(utilizador);
+            return "redirect:/logout";
+        }
+
+        fr.delete(funcionario);
+        ur.delete(utilizador);
+
         return "redirect:/listaFuncionario";
     }
 
+    @GetMapping("/detalhesFuncionario/{username}")
+    public String detalhesFuncionario(@PathVariable("username") String username,
+                                        Model model){
+            model.addAttribute("f", fr.findByUtilizador(ur.findByUsername(username)));
+            return "detalhes_funcionario";
+    }
 }

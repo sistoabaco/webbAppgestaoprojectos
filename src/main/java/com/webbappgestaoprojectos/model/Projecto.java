@@ -39,7 +39,7 @@ public class Projecto implements Serializable {
         this.saldoDisponivel = saldoDisponivel;
     }
 
-    @ManyToMany(mappedBy = "projecto", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "projecto")
     private Collection <Parceiro> parceiro;
 
     @ManyToMany(mappedBy = "projecto")

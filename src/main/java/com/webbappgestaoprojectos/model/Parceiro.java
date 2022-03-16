@@ -42,7 +42,7 @@ public class Parceiro {
         this.utilizador = utilizador;
     }
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany
     @JoinTable(
             name = "financiador_projecto",
             joinColumns = @JoinColumn(
