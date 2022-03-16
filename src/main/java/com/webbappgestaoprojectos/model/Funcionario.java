@@ -1,6 +1,8 @@
 package com.webbappgestaoprojectos.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
@@ -23,11 +25,15 @@ public class Funcionario {
     private String sobrenome;
     private String genero;
     private String estadoCivil;
-    private Date dataNascimento;
     private String endereco;
     private String distrito;
     private String celular;
+
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date dataNascimento;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date dataInicio;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date dataFim;
 
     @ManyToOne

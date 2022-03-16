@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -59,7 +61,7 @@ public class DataLoader implements CommandLineRunner{
 //        utilizadorRepository.save(u);
 //
         projR.save(new Projecto("BHA", "Activo", 12000000.0, "Chiure e Ancuabe",
-                "2020-08-01", "2020-10-01", "USD",8276626.0));
+                 Date.valueOf("2020-08-01"), Date.valueOf( "2020-10-01"), "USD",8276626.0));
 
         Utilizador uParceiro = new Utilizador("usaid@gmail.com", passwordEncoder.encode("zxcvb"));
         uParceiro.setPermissao(Arrays.asList(parPermissao));
@@ -87,8 +89,9 @@ public class DataLoader implements CommandLineRunner{
 
         Categoria cat = cr.findByCategoria("ADMIN");
 
-        Funcionario f = new Funcionario("Admin","Administrador", "admin", "admin", null, "admin","admin"
-                , "admin", null, null);
+        Funcionario f = new Funcionario("Admin","Administrador", "admin",
+                "admin", Date.valueOf("1920-01-01"), "admin","admin"
+                , "admin", Date.valueOf("2000-01-02"), Date.valueOf("2050-01-02"));
         f.setUtilizador(utilizador);
         f.setProjecto(Arrays.asList(p));
         f.setCategoria(cat);

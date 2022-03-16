@@ -1,16 +1,13 @@
 package com.webbappgestaoprojectos.controller;
 
 import com.webbappgestaoprojectos.model.Projecto;
-import com.webbappgestaoprojectos.repository.FuncionarioRepository;
 import com.webbappgestaoprojectos.repository.ProjectoRepository;
-import com.webbappgestaoprojectos.repository.UtilizadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 
 @Controller
 public class ProjectoController {
@@ -30,7 +27,12 @@ public class ProjectoController {
     }
 
     @RequestMapping(value = "/salvarProjecto", method = RequestMethod.POST)
-    public String salvarProjecto(Projecto projecto, Model model){
+    public String salvarProjecto(Projecto projecto,  @RequestParam(value = "dataInicio",
+            required = true) String dataI, @RequestParam(value = "dataFim", required = true) String dataF,Model model){
+ 
+        projecto.setDataFim(Date.valueOf(dataI));
+        projecto.setDataFim(Date.valueOf(dataF));
+
         projectoRepository.save(projecto);
         return"redirect:/listaProjecto";
     }

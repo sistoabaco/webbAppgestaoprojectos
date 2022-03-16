@@ -23,13 +23,11 @@ public class Parceiro {
 
     private String nomeCompleto;
 
-    @Size (min = 10)
+//    @Size (min = 10)
     @Column(unique = true)
     private String nuit;
-
     private String endereco;
-
-    @Size (min = 5)
+//    @Size (min = 5)
     @Column(unique = true)
     private String email;
 

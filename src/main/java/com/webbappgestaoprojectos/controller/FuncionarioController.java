@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.sql.Date;
 import java.util.Collection;
 
 @Controller
@@ -46,7 +47,9 @@ public class FuncionarioController {
 
     @PostMapping("/salvarFuncionario")
     public String adicionarFuncionario(@Valid Funcionario f, @Valid Utilizador u, @RequestParam(value = "pro", required = true)  Collection <Projecto> proj,
-    Categoria cat, BindingResult result, @RequestParam(value = "permi", required = true) Collection<Permissao> role, Model model){
+    Categoria cat, BindingResult result, @RequestParam(value = "permi", required = true) Collection<Permissao> role, Model model,
+        @RequestParam(value="dataNascimento", required = true) String dataN, @RequestParam(value="dataInicio", required = true) String dataI,
+                                       @RequestParam(value="dataNascimento",required = true) String dataF){
 //        model.addAttribute("erro", "erro ao salvar funcionario");
 
         if (u.getUsername() .equals(ur.findByUsername(u.getUsername()))){
@@ -61,6 +64,10 @@ public class FuncionarioController {
         f.setCategoria(cat);
         f.setProjecto(proj);
         f.setUtilizador(u);
+
+        f.setDataNascimento(Date.valueOf(dataN));
+        f.setDataFim(Date.valueOf(dataF));
+        f.setDataInicio(Date.valueOf(dataI));
 
         fr.save(f);
 
