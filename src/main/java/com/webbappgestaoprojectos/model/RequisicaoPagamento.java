@@ -26,16 +26,20 @@ public class RequisicaoPagamento {
     private String valorPorExtenso;
 
     private String preparadoPor;
-    private String vistoCoordenador;
-    private String vistoContabilista;
-    private String vistoFinanca;
-    private String vistoDireccao;
-
     private LocalDate dataPreparadoPor;
+
+    private String vistoCoordenador;
     private LocalDate dataVistoCoordenador;
+
+    private String vistoContabilista;
     private LocalDate dataVistoContabilista;
+
+    private String vistoFinanca;
     private LocalDate dataVistoFinanca;
+
+    private String vistoDireccao;
     private LocalDate dataVistoDireccao;
+
     private String status; //rejeitado/aprovado/cancelado/pendente
     private String motivo_rejeicao_cancelamento;
 

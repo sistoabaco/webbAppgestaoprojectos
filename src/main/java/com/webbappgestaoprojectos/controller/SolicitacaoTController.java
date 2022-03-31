@@ -46,9 +46,6 @@ public class SolicitacaoTController {
     @RequestMapping(value = "/coordenador", method = RequestMethod.GET)
     public String coordenador(Model model){
 
-//        String s = new UtilizadorController().UtilizadorLogado();//dados de sessao
-//        Utilizador ut = ur.findByUsername(s);//utilizador logado
-
         model.addAttribute("transporteList", str.findByCoordenadorST());
         return "coordenador_area";
 
@@ -56,9 +53,6 @@ public class SolicitacaoTController {
 
     @RequestMapping(value = "/logistico", method = RequestMethod.GET)
     public String logisticoModel(Model model){
-
-//        String s = new UtilizadorController().UtilizadorLogado();//dados de sessao
-//        Utilizador ut = ur.findByUsername(s);//utilizador logado
 
         model.addAttribute("transporteList", str.findByLogisticoST());
         return "logistico_area";
@@ -133,21 +127,16 @@ public class SolicitacaoTController {
         Utilizador ut = ur.findByUsername(s);//utilizador logado
         SolicitacaoTransporte st = str.findById(idST).get();
 
-//        System.out.println("rsstatu + " + status + " id +" + idST + "c " +
-//                fr.findByUtilizador(ut).getCategoria().getDescricao());
-
         if(fr.findByUtilizador(ut).getCategoria().getDescricao().equalsIgnoreCase("COORDENADOR") ||
         fr.findByUtilizador(ut).getCategoria().getDescricao().equalsIgnoreCase("ADMIN")) {
             st.setCoordenador(fr.findByUtilizador(ut).toString());
             st.setDataAprovacaoCoordenador(LocalDate.now());
-//            System.out.println("ccccord");
             piloto = 'c';
         }else if(fr.findByUtilizador(ut).getCategoria().getDescricao().equalsIgnoreCase("LOGISTICO") ||
         fr.findByUtilizador(ut).getCategoria().getDescricao().equalsIgnoreCase("ADMIN")) {
             st.setLogistico(fr.findByUtilizador(ut).toString());
             st.setDataAprovacaoLogistico(LocalDate.now());
             st.setStatus("Aprovado");
-//            System.out.println("lllogistico");
             piloto = 'l';
         }
 

@@ -2,6 +2,7 @@ package com.webbappgestaoprojectos.model;
 
 import lombok.*;
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -18,16 +19,16 @@ public class OrdemCompra {
 
     private String nomeProjecto;
     private String mes;
+    private LocalDate data;
 
     private String orcamentoNr;
     private int pedidoNr;
-    private String Nuit;
-    private String endereco;
-    private String descricaoFornecedor;
-    private String email;
-    private String fax;
     private String departamento;
     private String formaPagamento;
+    private String condicaoPagamento;
+    private String previsaoEntrega;
+    private String observacao;
+    private double valorTotal;
 
     private String requisitante;
     private String administracao;
