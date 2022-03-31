@@ -37,6 +37,7 @@
             <th scope="col">Local de Implementacao</th>
             <th scope="col">Data Inicio</th>
             <th scope="col">Data Fim</th>
+            <th scope="col">Orcamento</th>
             <th scope="col">Estado</th>
             <th scope="col" sec:authorize="hasAuthority('ADMIN')">Accoes</th>
         </tr>
@@ -49,6 +50,7 @@
                     <td> [[${p.localImplementacao}]]</td>
                     <td> [[${p.dataInicio}]]</td>
                     <td> [[${p.dataFim}]]</td>
+                    <td> [[${p.orcamento}]]</td>
                     <td> [[${p.estado}]]</td>
                     <td><a th:href="@{'/editProjecto/' + ${p.idProjecto}}" sec:authorize="hasAuthority('ADMIN')">Editar</a>
                         <a th:href="@{'/apagarProjecto/' + ${p.idProjecto}}" sec:authorize="hasAuthority('ADMIN')">Apagar</a>

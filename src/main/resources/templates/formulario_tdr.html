@@ -18,7 +18,7 @@
             </a>
 
             <div class="col-md-3 text-end">
-                <a href="/paginaSegura"><button type="button" class="btn btn-outline-primary me-2">Voltar</button></a>
+                <a href="/termoReferencia"><button type="button" class="btn btn-outline-primary me-2">Voltar</button></a>
                 <!--<button type="button" class="btn btn-primary">Sign-up</button>-->
             </div>
         </header>
@@ -26,72 +26,65 @@
 
     <div class="container main-cadastro">
 
-        <form class="row gy-2 gx-3 align-items-center">
-            <div class="col-auto">
-                <label class="visually-hidden" for="autoSizingSelect">Solicitacao de Tranporte</label>
-                <select class="form-select" id="autoSizingSelectn">
-                    <!--                <option selected>Escolha o Solicitacao...</option>-->
-                    <!--                <option th:each="p : ${projecto}"-->
-                    <!--                        th:value="${p.idProjecto}"-->
-                    <!--                        th:text="${p.nomeProjecto}"-->
-                    <!--                        th:field="*{projecto}"></option>-->
-                </select>
-                <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
+        <h1><center>Termo de Referencia</center></h1>
+
+            <form th:action="@{/salvarTdR}" class="row gy-2 gx-3 align-items-center" method="post">
+
+                <div class="col-auto">
+                    <label>Solicitacao de Tranporte</label>
+                    <select class="form-select" name="solicitacaoTransporte" id="solicitacaoTransporte">
+                                        <option selected>Escolha o Solicitacao de Transporte...</option>
+                                        <option th:each="st : ${solT}"
+                                                th:value="${st.idSolicitacaoTransporte}"
+                                                th:text="${st.dataInicio} + ' ate ' + ${st.dataFim}
+                                                 + ' ' + ${st.acompanhante}">
+                                        </option>
+                    </select>
+                    <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                <label for="validationCustom10">Local  e Data da Actividade</label>
+                <input type="text" name="localEDataDaActividade" class="form-control" id="validationCustom10" placeholder="Chiure, agosto de 2021" value="" required>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
             </div>
 
-            <div class="col-auto">
-                <label class="visually-hidden" for="autoSizingSelect">Projecto</label>
-                <select class="form-select" id="autoSizingSelect">
-    <!--                <option selected>Escolha o projecto...</option>-->
-    <!--                <option th:each="p : ${projecto}"-->
-    <!--                        th:value="${p.idProjecto}"-->
-    <!--                        th:text="${p.nomeProjecto}"-->
-    <!--                        th:field="*{projecto}"></option>-->
-                </select>
-                <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom11">Participantes</label>
+                <input type="text" name="participantes" class="form-control" id="validationCustom11" placeholder="Almeida Garido e Afonso Mel" value="" required>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
             </div>
 
-        <div class="col-md-4 mb-3">
-            <label for="validationCustom10">Local  e Data da Actividade</label>
-            <input type="text" name="localEDataDaActividade" class="form-control" id="validationCustom10" placeholder="Almeida Garido" value="" required>
-            <div class="valid-feedback">
-                Tudo certo!
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom12">Beneficiario</label>
+                <input type="text" name="beneficiario" class="form-control" id="validationCustom12" placeholder="Almeida Garido" value="" required>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4 mb-3">
-            <label for="validationCustom11">Participantes</label>
-            <input type="text" name="participantes" class="form-control" id="validationCustom11" placeholder="Almeida Garido e Afonso Mel" value="" required>
-            <div class="valid-feedback">
-                Tudo certo!
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom13">Descricao da Actividade</label>
+                <textarea name="descricaoActividade" class="form-control" id="validationCustom13" rows="3" placeholder="No ambito do projecto x..." value="" required></textarea>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4 mb-3">
-            <label for="validationCustom12">Beneficiario</label>
-            <input type="text" name="beneficiario" class="form-control" id="validationCustom12" placeholder="Almeida Garido" value="" required>
-            <div class="valid-feedback">
-                Tudo certo!
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom14">Objectivo da Actividade</label>
+                <input type="text" name="objectivoActividade" class="form-control" id="validationCustom14" placeholder="Adquirir viatura..." value="" required>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4 mb-3">
-            <label for="validationCustom13">Descricao da Actividade</label>
-            <textarea name="descricaoActividade" class="form-control" id="validationCustom13" rows="3" placeholder="No ambito do projecto x..." value="" required></textarea>
-            <div class="valid-feedback">
-                Tudo certo!
-            </div>
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <label for="validationCustom14">Objectivo da Actividade</label>
-            <input type="text" name="objectivoActividade" class="form-control" id="validationCustom14" placeholder="Adquirir viatura..." value="" required>
-            <div class="valid-feedback">
-                Tudo certo!
-            </div>
-        </div>
-        <button class="btn btn-primary btn-cadastrar" type="submit">Criar TdR</button>
-    </form>
+            <button class="btn btn-primary btn-cadastrar" type="submit">Criar TdR</button>
+        </form>
     </div>
 
 </body>

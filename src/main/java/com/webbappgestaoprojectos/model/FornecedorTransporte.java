@@ -20,7 +20,4 @@ public class FornecedorTransporte {
     private String nuit;
     private String endereco;
     private String fax;
-
-    @OneToMany
-    private Collection <OrdemCompra> ordemCompra;
 }

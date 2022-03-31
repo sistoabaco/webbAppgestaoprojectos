@@ -24,10 +24,13 @@ public class TermoReferencia implements Serializable {
     private String beneficiario;
     private String descricaoActividade;
     private String objectivoActividade;
-    private double saldoTotalActividade;
+    private double saldoTotalActividade = 0;
 
     private String elaboradoPor;
     private LocalDate dataElaboracao;
+
+    private String AprovadoPor;
+    private LocalDate DataAprovacao;
 
     private String status; //rejeitado/aprovado/cancelado/pendente
     private String motivo_rejeicao_cancelamento;
@@ -40,9 +43,6 @@ public class TermoReferencia implements Serializable {
             inverseJoinColumns = @JoinColumn(
                     name = "idProjecto", referencedColumnName = "idProjecto"))
     private Collection <Projecto> projecto;
-
-    private String tdrAprovadoPor;
-    private LocalDate tdrDataAprovacao;
 
     @OneToOne
     private SolicitacaoTransporte solicitacaoTransporte;

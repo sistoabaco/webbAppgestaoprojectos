@@ -61,7 +61,7 @@ public class DataLoader implements CommandLineRunner{
 //        utilizadorRepository.save(u);
 //
         projR.save(new Projecto("BHA", "Activo", 12000000.0, "Chiure e Ancuabe",
-                 Date.valueOf("2020-08-01"), Date.valueOf( "2020-10-01"), "USD",8276626.0));
+                 Date.valueOf("2020-08-01"), Date.valueOf( "2022-10-01"), "USD",8276626.0));
 
         Utilizador uParceiro = new Utilizador("usaid@gmail.com", passwordEncoder.encode("zxcvb"));
         uParceiro.setPermissao(Arrays.asList(parPermissao));
@@ -81,8 +81,7 @@ public class DataLoader implements CommandLineRunner{
          cr.save(new Categoria("GESTOR DE PROGRAMAS", 150000.0));
          cr.save(new Categoria("DIRECTOR", 200000.0));
 //        Categoria c7 = new Categoria("CONTABILISTA", 30000.0);
-         cr.save(new Categoria("OFICIAL DE LOGISTICA", 50000.0));
-//        Categoria c9 = new Categoria("ASSISTENTE DE LOGISTICA", 30000.0);
+         cr.save(new Categoria("LOGISTICO", 50000.0));
 //        Categoria c10 = new Categoria("SECRETARIA", 30000.0);
 //        Categoria c11 = new Categoria("FIEL DE ARMAZEM", 30000.0);
           cr.save(new Categoria("OUTROS", 50000.0));

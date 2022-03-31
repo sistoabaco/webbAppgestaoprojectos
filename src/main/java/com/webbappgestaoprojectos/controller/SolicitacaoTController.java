@@ -23,35 +23,50 @@ public class SolicitacaoTController {
     @Autowired
     UtilizadorRepository ur;
 
-    @RequestMapping(value = "/coordenador", method = RequestMethod.GET)
-    public String coordenador(Model model){
+    @GetMapping("/listaSTransporte")
+    public String listarST(Model model){
+        model.addAttribute("STransporte", str.findAll());
+        return"lista_s_transporte";
+    }
+
+    @GetMapping("/solicitacaoTransporte")
+    public String MenuST(Model model){
         String s = new UtilizadorController().UtilizadorLogado();//dados de sessao
         Utilizador ut = ur.findByUsername(s);//utilizador logado
-        Collection <SolicitacaoTransporte> sTList = str.findByStatus("Pendente");
 
+        Collection <SolicitacaoTransporte> sTList = str.findByStatus("Pendente");
         model.addAttribute("STransporteC", sTList);
+
+        Collection <SolicitacaoTransporte> logisticList = str.findByCoordenadorST();
+        model.addAttribute("transporteList", logisticList);
+
+        return"solicitacao_transporte";
+    }
+
+    @RequestMapping(value = "/coordenador", method = RequestMethod.GET)
+    public String coordenador(Model model){
+
+//        String s = new UtilizadorController().UtilizadorLogado();//dados de sessao
+//        Utilizador ut = ur.findByUsername(s);//utilizador logado
+
+        model.addAttribute("transporteList", str.findByCoordenadorST());
         return "coordenador_area";
+
     }
 
     @RequestMapping(value = "/logistico", method = RequestMethod.GET)
-    public String logistico(Model model){
-        String s = new UtilizadorController().UtilizadorLogado();//dados de sessao
-        Utilizador ut = ur.findByUsername(s);//utilizador logado
-        Collection <SolicitacaoTransporte> coordenadorList = str.findByCoordenadorST();
+    public String logisticoModel(Model model){
 
-        model.addAttribute("transporteList", coordenadorList);
+//        String s = new UtilizadorController().UtilizadorLogado();//dados de sessao
+//        Utilizador ut = ur.findByUsername(s);//utilizador logado
+
+        model.addAttribute("transporteList", str.findByLogisticoST());
         return "logistico_area";
     }
 
     @RequestMapping("/teamLeader")
     public String teamLeader(){
         return "team_leader_area";
-    }
-
-    @GetMapping("/listaSTransporte")
-    public String listarST(Model model){
-        model.addAttribute("STransporte", str.findAll());
-        return"lista_s_transporte";
     }
 
     @GetMapping("/salvarST")
@@ -75,11 +90,10 @@ public class SolicitacaoTController {
         st.setStatus("Pendente");
 
         if( f.getCategoria().getDescricao().equalsIgnoreCase("COORDENADOR")){
-//            System.out.println("entrra");
             st.setCoordenador(f.toString());
             st.setDataAprovacaoCoordenador(LocalDate.now());
             str.save(st);
-            return"coordenador_area";
+            return"redirect:/coordenador";
         }
 
         str.save(st);
@@ -104,23 +118,55 @@ public class SolicitacaoTController {
         return "redirect:/listaSTransporte";
     }
 
+    @GetMapping("/aprovar/{idSolicitacaoTransporte}")
+    public String aprovarOuRejeitarST(@PathVariable("idSolicitacaoTransporte") Integer idST, Model model){
+        model.addAttribute("STransporte", str.findById(idST).get());
+        return"aprovar_s_transporte";
+    }
+
+    @PostMapping("/aprovar/{idSolicitacaoTransporte}")
+    public String aprovarOuRejeitarSTr(@PathVariable("idSolicitacaoTransporte") Integer idST,
+    @RequestParam(value = "statu", required = true) String status){
+        char piloto  = 'k';
+
+        String s = new UtilizadorController().UtilizadorLogado();//dados de sessao
+        Utilizador ut = ur.findByUsername(s);//utilizador logado
+        SolicitacaoTransporte st = str.findById(idST).get();
+
+//        System.out.println("rsstatu + " + status + " id +" + idST + "c " +
+//                fr.findByUtilizador(ut).getCategoria().getDescricao());
+
+        if(fr.findByUtilizador(ut).getCategoria().getDescricao().equalsIgnoreCase("COORDENADOR") ||
+        fr.findByUtilizador(ut).getCategoria().getDescricao().equalsIgnoreCase("ADMIN")) {
+            st.setCoordenador(fr.findByUtilizador(ut).toString());
+            st.setDataAprovacaoCoordenador(LocalDate.now());
+//            System.out.println("ccccord");
+            piloto = 'c';
+        }else if(fr.findByUtilizador(ut).getCategoria().getDescricao().equalsIgnoreCase("LOGISTICO") ||
+        fr.findByUtilizador(ut).getCategoria().getDescricao().equalsIgnoreCase("ADMIN")) {
+            st.setLogistico(fr.findByUtilizador(ut).toString());
+            st.setDataAprovacaoLogistico(LocalDate.now());
+            st.setStatus("Aprovado");
+//            System.out.println("lllogistico");
+            piloto = 'l';
+        }
+
+        if(piloto == 'c') {
+            str.save(st);
+            return "redirect:/coordenador";
+        }
+
+        if(piloto == 'l') {
+            str.save(st);
+            return "redirect:/logistico";
+        }
+
+        return"redirect:/detalheST/{idSolicitacaoTransporte}";
+    }
+
     @GetMapping("/detalheST/{idSolicitacaoTransporte}")
     public String detalheST(@PathVariable("idSolicitacaoTransporte") Integer idST, Model model){
         model.addAttribute("STransporte", str.findById(idST).get());
         return"detalhes_sol_transporte";
-    }
-
-    @PostMapping("/detalheST/{idSolicitacaoTransporte}")
-    public String detalheSTr(@PathVariable("idSolicitacaoTransporte") Integer idST,
-    @RequestParam(value = "statu", required = true) String status){
-
-        String s = new UtilizadorController().UtilizadorLogado();//dados de sessao
-        Utilizador ut = ur.findByUsername(s);//utilizador logado
-
-        SolicitacaoTransporte st = str.findById(idST).get();
-        st.setCoordenador(fr.findByUtilizador(ut).toString());
-        st.setDataAprovacaoCoordenador(LocalDate.now());
-        str.save(st);
-        return"redirect:/coordenador";
     }
 }

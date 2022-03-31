@@ -37,6 +37,6 @@ public class OrdemCompra {
     @OneToOne
     private TermoReferencia termoReferencia;
 
-    @ManyToOne
+    @OneToOne
     private FornecedorTransporte fornecedorTransporte;
 }

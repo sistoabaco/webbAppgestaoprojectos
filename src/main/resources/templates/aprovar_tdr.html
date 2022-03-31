@@ -4,67 +4,63 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>logistico</title>
+    <title>aprovarTdR</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="css/main.css" rel="stylesheet" />
 
 </head>
 <body>
-
     <div class="container head">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+
             <a href="/paginaSegura" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-                <img id="logo" width="60px" src="icons/caritasmz.png"/>
+                <img id="logo" alt="logo" width="60px" th:src="@{icons/caritasmz.png}"/>
                 <h2 class="logo"></h2>
             </a>
 
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/solicitacaoTransporte" class="nav-link px-2 link-dark">Solicitacao de Transporte</a></li>
-                <li><a href="/termoReferencia" class="nav-link px-2 link-dark">Termo de Referencia</a></li>
-            </ul>
-
             <div class="col-md-3 text-end">
-                <a href="/paginaSegura"><button type="button" class="btn btn-outline-primary me-2">Voltar</button></a>
+                <a href="/termoReferencia"><button type="button" class="btn btn-outline-primary me-2">Voltar</button></a>
                 <!--<button type="button" class="btn btn-primary">Sign-up</button>-->
             </div>
-
         </header>
     </div>
 
     <div class="container>">
-        <center> <h1>Lista de ST Aprovados (Logistico)</h1></center>
+        <center> <h1>Aprovar Termo de Referencia</h1></center>
     </div>
 
     <table class="table table-bordered">
         <thead class="thread thread-dark">
         <tr>
-            <th scope="col">Solitante Responsavel</th>
-            <th scope="col">Origem</th>
-            <th scope="col">Destino</th>
-            <th scope="col">Inicio Activ</th>
-            <th scope="col">Fim Activ</th>
-            <th scope="col">motivos
             <th scope="col">Projecto</th>
-            <th scope="col">logistico</th>
-            <th scope="col">Data Aprovacao</th>
-            <th scope="col">Estado</th>
+            <th scope="col">Local e Data</th>
+            <th scope="col">Participante(s)</th>
+            <th scope="col">Descricao</th>
+            <th scope="col">Objectivo</th>
+            <th scope="col">Elaborado Por</th>
+            <th scope="col">Data</th>
+            <th scope="col">Saldo da Actividade</th>
+            <th scope="col">Accao</th>
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="st : ${transporteList}">
-            <tr>
-                <td> <a th:href="@{'/detalheST/' + ${st.idSolicitacaoTransporte}}"> [[${st.solicitanteResponsavel}]]</a></td>
-                <td> [[${st.origem}]]</td>
-                <td> [[${st.destino}]]</td>
-                <td> [[${st.dataInicio}]]</td>
-                <td> [[${st.dataFim}]]</td>
-                <td> [[${st.motivoDaSolicitacao}]]</td>
-                <td> [[${st.getProjecto}]]</td>
-                <td> [[${st.logistico}]]</td>
-                <td> [[${st.dataAprovacaoLogistico}]]</td>
-                <td> [[${st.status}]]</td>
-            </tr>
+        <th:block th:each="tdr : ${termoR}">
+            <td> [[${tdr.getProjecto}]]</td>
+            <td> [[${tdr.localEDataDaActividade}]]</td>
+            <td> [[${tdr.participantes}]]</td>
+            <td> [[${tdr.descricaoActividade}]]</td>
+            <td> [[${tdr.objectivoActividade}]]</td>
+            <td> [[${tdr.elaboradoPor}]]</td>
+            <td> [[${tdr.dataElaboracao}]]</td>
+            <td> [[${tdr.saldoTotalActividade}]]</td>
+            <td>
+                <form method="post">
+                    <input type="submit" name="statu" id="statu" value="Aprovar">
+                </form>
+            </td>
+        </tr>
         </th:block>
         </tbody>
     </table>
@@ -79,7 +75,7 @@
                         <li class="nav-item mb-2"><a href="/listaProjecto" class="nav-link p-0 text-muted">Projectos</a></li>
                         <li class="nav-item mb-2"><a href="/listaParceiro" class="nav-link p-0 text-muted">Parceiros</a></li>
                         <li class="nav-item mb-2"><a href="/apoiadores" class="nav-link p-0 text-muted">Apoiadores</a></li>
-                        <li class="nav-item mb-2"><a href="/sobre" class="nav-link p-0 text-muted">Sobre</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Sobre</a></li>
                     </ul>
                 </div>
 
@@ -108,5 +104,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
 </html>

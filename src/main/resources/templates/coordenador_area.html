@@ -20,10 +20,8 @@
                 </a>
 
                 <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="/listaSTransporte" class="nav-link px-2 link-dark">Lista de Solicitacao de Transporte</a></li>
-                    <li><a href="/listaTdR" class="nav-link px-2 link-dark">Lista de TdRs</a></li>
-                    <li><a href="/salvarTdR" class="nav-link px-2 link-dark">Criar TdR</a></li>
-                    <li><a href="/salvarST" class="nav-link px-2 link-dark">Criar Solicitacao de Transporte</a></li>
+                    <li><a href="/solicitacaoTransporte" class="nav-link px-2 link-dark">Solicitacao de Transporte</a></li>
+                    <li><a href="/termoReferencia" class="nav-link px-2 link-dark">Termo de Referencia</a></li>
                 </ul>
 
                 <div class="col-md-3 text-end">
@@ -34,45 +32,42 @@
             </header>
         </div>
 
-        <div class="container>">
-           <center> <h1>Lista de solicitacao de Transporte por Aprovar</h1></center>
-        </div>
 
-        <table class="table table-bordered">
-            <thead class="thread thread-dark">
-            <tr>
-<!--                <th scope="col">tipo De Viatura</th>-->
-<!--                <th scope="col">quantidade de Viaturas</th>-->
-                <th scope="col">solitante Responsavel</th>
-                <th scope="col">Origem</th>
-                <th scope="col">Destino</th>
-                <th scope="col">Data Inicio</th>
-                <th scope="col">Data Fim</th>
-<!--                <th scope="col">Necessidade de Alojamento</th>-->
-<!--                <th scope="col">dias de alojamento</th>-->
-                <th scope="col">motivos da solicitacao
-                <th scope="col">Projecto</th>
-<!--                <th scope="col">Accao</th>-->
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="st : ${STransporteC}">
+            <div class="container>">
+                <center> <h1>Lista ST Aprovados (Coordenador)</h1></center>
+            </div>
+
+            <table class="table table-bordered">
+                <thead class="thread thread-dark">
                 <tr>
-<!--                    <td> [[${st.tipoDeViatura}]]</td>-->
-<!--                    <td> [[${st.qtdViaturas}]]</td>-->
-                    <td> <a th:href="@{'/detalheST/' + ${st.idSolicitacaoTransporte}}"> [[${st.solicitanteResponsavel}]]</a></td>
-                    <td> [[${st.origem}]]</td>
-                    <td> [[${st.destino}]]</td>
-                    <td> [[${st.dataInicio}]]</td>
-                    <td> [[${st.dataFim}]]</td>
-<!--                    <td> [[${st.qtdDias}]]</td>-->
-<!--                    <td> [[${st.qtdPessoas}]]</td>-->
-                    <td> [[${st.motivoDaSolicitacao}]]</td>
-                    <td> [[${st.getProjecto}]]</td>
+                    <th scope="col">Solitante Responsavel</th>
+                    <th scope="col">Origem</th>
+                    <th scope="col">Destino</th>
+                    <th scope="col">Inicio Activ</th>
+                    <th scope="col">Fim Activ</th>
+                    <th scope="col">motivos da solicitacao
+                    <th scope="col">Projecto</th>
+                    <th scope="col">Coordenador</th>
+                    <th scope="col">Data Aprovacao</th>
                 </tr>
-            </th:block>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <th:block th:each="st : ${transporteList}">
+                    <tr>
+                        <td> <a th:href="@{'/detalheST/' + ${st.idSolicitacaoTransporte}}"> [[${st.solicitanteResponsavel}]]</a></td>
+                        <td> [[${st.origem}]]</td>
+                        <td> [[${st.destino}]]</td>
+                        <td> [[${st.dataInicio}]]</td>
+                        <td> [[${st.dataFim}]]</td>
+                        <td> [[${st.motivoDaSolicitacao}]]</td>
+                        <td> [[${st.getProjecto}]]</td>
+                        <td> [[${st.coordenador}]]</td>
+                        <td> [[${st.dataAprovacaoCoordenador}]]</td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+
         <div class="container footer">
             <footer class="py-5">
                 <div class="row">
