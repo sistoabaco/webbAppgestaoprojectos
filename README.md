@@ -1,12 +1,8 @@
 # sistemadegestaocaritaspemba
 Para correr o projecto (maven com java) na maquina local:
 1. configurar a sua maquina para que seja capaz de correr um projecto em java;
-<<<<<<< HEAD
 2. precisar ter uma IDE instalada na sua maquina local;
-3. instalar nodejs, yarn, nuxtjs e vuejs para correr front-end
-=======
-2. precisa ter uma IDE instalada na sua maquina local;
-3. instalar nodejs, yarn, nuxtjs e vuejs para correr front-end
+3. instalar nodejs, yarn, nuxtjs e vuejs para correr frontend
 
 Regras do Negocio:
 1. Criar uma solicitacao de transporte (ST) - tecnicos ou coordenador;
