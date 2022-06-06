@@ -1,7 +1,6 @@
 package com.webbappgestaoprojectos.model;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @Getter
@@ -17,12 +16,15 @@ public class FormaPagamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idFormaPagamento;
 
-    private String beneficiario;
     private String banco;
     private String TipoPagamento;
-    private String numeroContaPagamento_NUIT;
+    private String numeroCheque;
+    private String caixa;
     private String numeroContaDoProjecto;
 
-    @ManyToOne
-    private FormaPagamento formaPagamento;
+    @OneToOne
+    private RequisicaoPagamento requisicaoPagamento;
+
+    @OneToOne
+    private FornecedorTransporte fornecedorTransporte;
 }

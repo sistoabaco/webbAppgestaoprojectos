@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.List;
 
-@Controller
+@RestController
+@CrossOrigin("http://localhost:3000/")
+@RequestMapping("/users")
+
 public class FuncionarioController {
 
     @Autowired
@@ -30,10 +34,9 @@ public class FuncionarioController {
     @Autowired
     ParceiroRepository parceiroRepository;
 
-    @RequestMapping(value = "/listaFuncionario", method = RequestMethod.GET)
-    public String listaFuncionario(Model model){
-        model.addAttribute("funcionario", fr.findAll());
-        return "lista_funcionario";
+    @RequestMapping(value = "/listaFuncionar io", method = RequestMethod.GET)
+    public List<Funcionario> listaFuncionario(Model model){
+        return fr.findAll();
     }
 
     @GetMapping("/salvarFuncionario")

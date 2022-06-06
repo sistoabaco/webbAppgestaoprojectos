@@ -52,4 +52,9 @@ public class TermoReferencia implements Serializable {
 
     @ManyToOne (cascade = CascadeType.ALL)
     private Funcionario funcionario;
+
+    @Override
+    public String toString(){
+        return getLocalEDataDaActividade() + " " + getObjectivoActividade();
+    }
 }
