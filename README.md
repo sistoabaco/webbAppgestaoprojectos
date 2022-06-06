@@ -6,7 +6,7 @@ Para correr o projecto (maven com java) na maquina local:
 3. instalar nodejs, yarn, nuxtjs e vuejs para correr front-end
 =======
 2. precisa ter uma IDE instalada na sua maquina local;
->>>>>>> 78b32c59e86df1d4af8cf985cac3b5a038eb4f16
+3. instalar nodejs, yarn, nuxtjs e vuejs para correr front-end
 
 Regras do Negocio:
 1. Criar uma solicitacao de transporte (ST) - tecnicos ou coordenador;
